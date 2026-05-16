@@ -1,0 +1,8 @@
+{
+  "name": "脆脆鲨的作品集",
+  "description": "基于苹果空间计算美学的个人视觉设计作品集，采用Bento Grid布局与深度极光流光视觉风格。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
