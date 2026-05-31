@@ -62,7 +62,7 @@ export const projects: Project[] = [
     description:
       "项目背景：\n借力春节年货消费热潮打造「氢弹大促」营销活动，针对新客、老客、高粘性核心用户等不同圈层人群，定制分层差异化福利与优惠玩法，精准撬动不同用户消费潜力，最大化活动转化。",
     imageUrl:
-      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=1200",
+      "/images/unsplash_1543002588.jpg",
     category: "landing",
     tags: ["大促设计", "新春年味", "视觉落地", "趣味抢购"],
     designBy: "王军震",
@@ -77,9 +77,9 @@ export const projects: Project[] = [
       "主次分明展示年货商品，直观传递大促力度",
     ],
     secondaryImages: [
-      "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=600",
+      "/images/unsplash_1543002588_600.jpg",
       "/images/regenerated_image_1779597196859.jpg",
-      "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=600",
+      "/images/unsplash_1563298723.jpg",
       "/images/regenerated_image_1779592516053.jpg",
       "/images/regenerated_image_1779592603233.jpg",
       "/images/regenerated_image_1779592906318.jpg",
@@ -145,25 +145,25 @@ export const projects: Project[] = [
     title: "618大促毕业季",
     subtitle: "AIGC GENERATED PROMOTION KV",
     description: "618大促加毕业季，打造专属大促氛围，结合 AI生成背景与交互设计",
-    imageUrl: "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=1200",
+    imageUrl: "/images/unsplash_1523240795612.jpg",
     category: "landing",
     tags: ["大促营销", "毕业季", "AIGC", "交互设计"],
     designBy: "王军震",
     themeColor: "#FF4D4F",
     layout: "dynamic",
     secondaryImages: [
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600",
-      "https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=600"
+      "/images/unsplash_1523240795612.jpg",
+      "/images/regenerated_image_1779592919714.jpg",
+      "/images/regenerated_image_1779592930990.jpg",
+      "/images/regenerated_image_1779597196859.jpg",
+      "/images/regenerated_image_1779597241074.jpg",
+      "/images/regenerated_image_1779814741616.jpg",
+      "/images/regenerated_image_1779814840378.jpg",
+      "/images/regenerated_image_1779814888473.jpg",
+      "/images/bear_street_4_1779894288795.png",
+      "/images/bear_cyber_3_1779894269826.png",
+      "/images/bear_skate_2_1779894250563.png",
+      "/images/bear_art_toy_1_1779894230407.png"
     ]
   }
 ];

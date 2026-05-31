@@ -3,14 +3,14 @@ import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
 
 const CREATIVE_WORKS = [
-  { id: 1, title: 'Visual 2026', color: '#8b5cf6', imageUrl: 'https://images.unsplash.com/photo-1635339001026-66356bc51ebb?auto=format&fit=crop&q=80&w=600' },
-  { id: 2, title: 'Spark Design', color: '#ec4899', imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600' },
-  { id: 3, title: 'AI Exploration', color: '#3b82f6', imageUrl: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=600' },
-  { id: 4, title: 'Concept Art', color: '#10b981', imageUrl: 'https://images.unsplash.com/photo-1642427749670-f20e2e76ee8c?auto=format&fit=crop&q=80&w=600' },
-  { id: 5, title: 'Future UI', color: '#f59e0b', imageUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600' },
-  { id: 6, title: 'Digital World', color: '#ef4444', imageUrl: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=600' },
-  { id: 7, title: 'Motion Graphics', color: '#6366f1', imageUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600' },
-  { id: 8, title: 'Brand Identity', color: '#14b8a6', imageUrl: 'https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=600' },
+  { id: 1, title: 'Visual 2026', color: '#8b5cf6', imageUrl: '/images/bear_street_4_1779894288795.png' },
+  { id: 2, title: 'Spark Design', color: '#ec4899', imageUrl: '/images/unsplash_1618005182384.jpg' },
+  { id: 3, title: 'AI Exploration', color: '#3b82f6', imageUrl: '/images/unsplash_1620641788421.jpg' },
+  { id: 4, title: 'Concept Art', color: '#10b981', imageUrl: '/images/bear_cyber_3_1779894269826.png' },
+  { id: 5, title: 'Future UI', color: '#f59e0b', imageUrl: '/images/unsplash_1550745165_1.jpg' },
+  { id: 6, title: 'Digital World', color: '#ef4444', imageUrl: '/images/unsplash_1614850523296.jpg' },
+  { id: 7, title: 'Motion Graphics', color: '#6366f1', imageUrl: '/images/unsplash_1550745165_1.jpg' },
+  { id: 8, title: 'Brand Identity', color: '#14b8a6', imageUrl: '/images/regenerated_image_1778957990481.png' },
 ];
 
 export const CreativeShowcase: React.FC = () => {

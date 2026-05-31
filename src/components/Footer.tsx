@@ -4,7 +4,7 @@ import { Edit2, Save, X, MessageSquare, BookOpen, Upload, Check } from 'lucide-r
 
 export default function Footer({ isAdmin }: { isAdmin: boolean }) {
   const [links, setLinks] = useState({
-    wechatQr: 'https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=300',
+    wechatQr: '/images/unsplash_1614741118887.jpg',
     xiaohongshu: 'https://xiaohongshu.com/user/profile/...'
   });
   const [isEditing, setIsEditing] = useState(false);
