@@ -10,11 +10,7 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showWechatModal, setShowWechatModal] = useState(false);
   const [editForm, setEditForm] = useState(links);
-  const [localIsAdmin, setLocalIsAdmin] = useState(isAdmin);
-
-  useEffect(() => {
-    setLocalIsAdmin(isAdmin);
-  }, [isAdmin]);
+  const localIsAdmin = false;
 
   useEffect(() => {
     const saved = localStorage.getItem('sharks_footer_links');
@@ -28,7 +24,6 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
   // Reactive synchronizations for administrator active session
   useEffect(() => {
     const checkState = () => {
-      setLocalIsAdmin(typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true');
       const saved = localStorage.getItem('sharks_footer_links');
       if (saved) {
         try {

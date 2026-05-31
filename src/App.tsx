@@ -182,10 +182,7 @@ export default function App() {
 
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const [isAdmin, setIsAdmin] = useState(() => {
-    const local = localStorage.getItem('sharks_portfolio_admin_active');
-    return local === 'true';
-  });
+  const isAdmin = false;
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [adminEmailInput, setAdminEmailInput] = useState('');
   const [adminPasswordInput, setAdminPasswordInput] = useState('');
@@ -314,15 +311,7 @@ export default function App() {
     initDBLibrary();
   }, []);
 
-  useEffect(() => {
-    // Scan URL query parameter for frictionless access
-    const params = new URLSearchParams(window.location.search);
-    const keyParam = params.get('admin') || params.get('key');
-    if (keyParam === 'wangjunzhen' || keyParam === 'true' || keyParam === '666') {
-      setIsAdmin(true);
-      safeSetLocalStorage('sharks_portfolio_admin_active', 'true');
-    }
-  }, []);
+
 
   const handleUpdateProject = async (updated: Project) => {
     const nextList = portfolioProjects.map(p => p.id === updated.id ? updated : p);
@@ -1464,45 +1453,11 @@ export default function App() {
           
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm">
-              <span className={`inline-block w-2 h-2 rounded-full ${isAdmin ? 'bg-emerald-400 animate-pulse' : 'bg-white/10'}`} />
+              <span className="inline-block w-2 h-2 rounded-full bg-white/10" />
               <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-white/50">
-                {isAdmin ? 'ADMIN AUTH ACTIVE' : 'SECURE GUEST MODE'}
+                SHARKS DESIGN SPACE
               </span>
             </div>
-
-            {isAdmin ? (
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleSaveToSourceCode}
-                  disabled={isSavingSource}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-950/20 text-emerald-400 hover:bg-emerald-950/40 hover:border-emerald-500/50 text-[10px] font-mono font-bold uppercase tracking-widest transition-all cursor-pointer disabled:opacity-50"
-                >
-                  <CloudLightning className="h-3 w-3 animate-pulse text-emerald-400" />
-                  <span>{saveMessage || 'Save Edits // 保存至网站源码'}</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setIsAdmin(false);
-                    localStorage.removeItem('sharks_portfolio_admin_active');
-                  }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-rose-500/30 bg-rose-950/20 text-rose-400 hover:bg-rose-950/40 hover:border-rose-500/50 text-[10px] font-mono font-bold uppercase tracking-widest transition-all cursor-pointer"
-                >
-                  <LogOut className="h-3 w-3" />
-                  <span>Exit Portal // 退出</span>
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => {
-                  setLoginError('');
-                  setShowAdminModal(true);
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-purple-500/30 bg-purple-950/20 text-purple-400 hover:bg-purple-950/40 hover:border-purple-500/50 text-[10px] font-mono font-bold uppercase tracking-widest transition-all cursor-pointer"
-              >
-                <Lock className="h-3 w-3" />
-                <span>Designer portal // 登录</span>
-              </button>
-            )}
           </div>
         </div>
       </footer>
@@ -1561,7 +1516,6 @@ export default function App() {
                       setLoginSuccess(true);
                       setLoginError('');
                       setTimeout(() => {
-                        setIsAdmin(true);
                         safeSetLocalStorage('sharks_portfolio_admin_active', 'true');
                         setShowAdminModal(false);
                         setLoginSuccess(false);

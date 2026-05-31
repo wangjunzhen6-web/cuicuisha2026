@@ -584,7 +584,7 @@ function Interactive3DCard({
   const [tempPhase, setTempPhase] = useState(phase);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+  const isAdmin = false;
 
   // Sync copy text when props change
   React.useEffect(() => {
@@ -1110,7 +1110,7 @@ function DynamicLayout({
   const kvFileInputRef = useRef<HTMLInputElement>(null);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+  const isAdmin = false;
 
   // States for general project details modification
   const [showProjectEdit, setShowProjectEdit] = useState(false);
@@ -1187,7 +1187,7 @@ function DynamicLayout({
 
   if (project.title.includes("转转熊") || project.id === "11" || project.id === "12") {
     const themeColor = project.themeColor || "#FF4D4F";
-    const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+    const isAdmin = false;
     
     // Load state from local storage or default cards
     const defaultCards = project.id === "12" ? project.secondaryImages.slice(1, 9).map((src, i) => ({
@@ -2328,27 +2328,13 @@ function EditableImage({
   const [activeTab, setActiveTab] = useState<"file" | "url">("file");
 
   // Admin login integration inside component
-  const [isAdmin, setIsAdmin] = useState(() => {
-    return typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
-  });
+  const isAdmin = false;
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  // Synchronize admin login status across different component instances
-  useEffect(() => {
-    const handleAdminSync = () => {
-      const active = typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
-      setIsAdmin(active);
-    };
-    window.addEventListener("storage", handleAdminSync);
-    window.addEventListener("admin-state-changed", handleAdminSync);
-    return () => {
-      window.removeEventListener("storage", handleAdminSync);
-      window.removeEventListener("admin-state-changed", handleAdminSync);
-    };
-  }, []);
+
 
   const isVideo = src?.endsWith(".mp4") || src?.startsWith("data:video/") || src?.includes("mobile-landing-animation") || src?.includes("input_file_11");
 
@@ -2396,7 +2382,6 @@ function EditableImage({
       setLoginError("");
       setTimeout(() => {
         localStorage.setItem("sharks_portfolio_admin_active", "true");
-        setIsAdmin(true);
         setLoginSuccess(false);
         setAdminEmail("");
         setAdminPassword("");
