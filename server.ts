@@ -4,8 +4,19 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Dynamically resolve directory name to be fully robust for ESM (tsx) and CJS (compiled esbuild)
+const getResolvedDirname = () => {
+  if (typeof __dirname !== 'undefined' && __dirname) {
+    return __dirname;
+  }
+  try {
+    return path.dirname(fileURLToPath(import.meta.url));
+  } catch (err) {
+    return process.cwd();
+  }
+};
+
+const resolvedDirname = getResolvedDirname();
 
 async function startServer() {
   const app = express();
@@ -26,7 +37,7 @@ async function startServer() {
     try {
       console.log('[Server] Received save request. Body keys:', Object.keys(req.body));
       const data = req.body;
-      const dataDir = path.resolve(__dirname, 'src/data');
+      const dataDir = path.resolve(resolvedDirname, 'src/data');
       
       if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
