@@ -26,6 +26,16 @@ function mergeProjectsWithStatic(loaded: Project[]): Project[] {
     const staticProj = staticProjects.find(p => p.id === loadedProj.id);
     if (!staticProj) return loadedProj;
     
+    // Force restore image URLs and secondary images for "摄影出游季" and "羊角角IP设计" to fix/restore their displays 
+    if (loadedProj.id === "3" || loadedProj.id === "8" || loadedProj.title?.includes("摄影出游") || loadedProj.title?.includes("羊角角")) {
+      return {
+        ...staticProj,
+        ...loadedProj,
+        imageUrl: staticProj.imageUrl,
+        secondaryImages: staticProj.secondaryImages
+      };
+    }
+    
     // Gracefully merge loaded (customized) project over static default template, preserving user choices 100%
     return {
       ...staticProj,

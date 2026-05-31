@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       "借助假期出游热度，转转为迎接用户旅行拍照需求，针对拍照类手机推出了丰厚的优惠券。旨在提升GMV规模，助力手机达成订单目标",
     imageUrl:
-      "/images/input_file_1.png",
+      "/images/spring_travel_kv_1779886513533.png",
     category: "landing",
     tags: ["大促设计", "视觉落地", "摄影出行"],
     designBy: "王军震",
@@ -25,9 +25,9 @@ export const projects: Project[] = [
       "利用AI生成摄影类素材图来解决没有对应素材图的痛点",
     ],
     secondaryImages: [
-      "/images/input_file_1.png", // 0: Top KV representation
-      "/images/regenerated_image_1779597241074.jpg", // 1: Moodboard (情绪版)
-      "/images/input_file_1.png", // 2: Secondary KV showcase
+      "/images/spring_travel_kv_1779886513533.png", // 0: Top KV representation
+      "/images/camera_gear_detail_1779886599446.png", // 1: Moodboard (情绪版)
+      "/images/spring_travel_kv_1779886513533.png", // 2: Secondary KV showcase
       "/images/input_file_8.png", // 3: Autumn "金秋出游"
       "/images/input_file_4.png", // 4: Winter "冬日寻趣"
       "/images/input_file_9.png", // 5: Daily "拍照神器"
@@ -50,7 +50,7 @@ export const projects: Project[] = [
       "/images/input_file_4.png", // 1: 草图
       "/images/input_file_8.png", // 2: 白膜
       "/images/input_file_sketch_3.png", // 3: 彩绘
-      "/images/input_file_sketch_bg.png", // 4: 背景线稿
+      "/images/chrome_cyber_pod_1779626552718.png", // 4: 背景线稿 / 替代展示
       "/images/input_file_1.png", // 5: Showcase Lineup
       "/images/regenerated_image_1779002206742.mp4", // 6: Story Video
     ],
