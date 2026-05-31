@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       "借助假期出游热度，转转为迎接用户旅行拍照需求，针对拍照类手机推出了丰厚的优惠券。旨在提升GMV规模，助力手机达成订单目标",
     imageUrl:
-      "https://images.unsplash.com/photo-1616469850117-9003504f7626?auto=format&fit=crop&q=80&w=1200",
+      "/src/assets/images/input_file_1.png",
     category: "landing",
     tags: ["大促设计", "视觉落地", "摄影出行"],
     designBy: "王军震",
@@ -25,12 +25,12 @@ export const projects: Project[] = [
       "利用AI生成摄影类素材图来解决没有对应素材图的痛点",
     ],
     secondaryImages: [
-      "https://images.unsplash.com/photo-1616469850117-9003504f7626?auto=format&fit=crop&q=80&w=600", // 0: Top KV representation
+      "/src/assets/images/input_file_1.png", // 0: Top KV representation
       "/src/assets/images/regenerated_image_1779597241074.jpg", // 1: Moodboard (情绪版)
-      "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=600", // 2: Secondary KV showcase
-      "/src/assets/images/regenerated_image_1779592919714.jpg", // 3: Autumn "金秋出游"
-      "/src/assets/images/regenerated_image_1779597003959.jpg", // 4: Winter "冬日寻趣"
-      "/src/assets/images/regenerated_image_1779592930990.jpg", // 5: Daily "拍照神器"
+      "/src/assets/images/input_file_1.png", // 2: Secondary KV showcase
+      "/src/assets/images/input_file_8.png", // 3: Autumn "金秋出游"
+      "/src/assets/images/input_file_4.png", // 4: Winter "冬日寻趣"
+      "/src/assets/images/input_file_9.png", // 5: Daily "拍照神器"
     ],
   },
   {

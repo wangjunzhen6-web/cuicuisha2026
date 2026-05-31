@@ -4,7 +4,7 @@
     "title": "摄影出游季",
     "subtitle": "TRAVEL PHOTO SEASON",
     "description": "借助假期出游热度，转转为迎接用户旅行拍照需求，针对拍照类手机推出了丰厚的优惠券。旨在提升GMV规模，助力手机达成订单目标",
-    "imageUrl": "https://images.unsplash.com/photo-1616469850117-9003504f7626?auto=format&fit=crop&q=80&w=1200",
+    "imageUrl": "/src/assets/images/input_file_1.png",
     "category": "landing",
     "tags": ["大促设计", "视觉落地", "摄影出行"],
     "designBy": "王军震",
@@ -16,12 +16,12 @@
       "利用AI生成摄影类素材图来解决没有对应素材图的痛点"
     ],
     "secondaryImages": [
-      "https://images.unsplash.com/photo-1616469850117-9003504f7626?auto=format&fit=crop&q=80&w=600",
+      "/src/assets/images/input_file_1.png",
       "/src/assets/images/regenerated_image_1779597241074.jpg",
-      "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=600",
-      "/src/assets/images/regenerated_image_1779592919714.jpg",
-      "/src/assets/images/regenerated_image_1779597003959.jpg",
-      "/src/assets/images/regenerated_image_1779592930990.jpg"
+      "/src/assets/images/input_file_1.png",
+      "/src/assets/images/input_file_8.png",
+      "/src/assets/images/input_file_4.png",
+      "/src/assets/images/input_file_9.png"
     ]
   },
   {
