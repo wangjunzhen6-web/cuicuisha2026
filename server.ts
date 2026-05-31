@@ -33,6 +33,60 @@ async function startServer() {
   app.use(express.urlencoded({ limit: '150mb', extended: true }));
 
   // API router goes here FIRST
+  app.post('/api/upload', (req, res, next) => {
+    try {
+      const { filename, base64 } = req.body;
+      if (!filename || !base64) {
+        return res.status(400).json({ success: false, error: 'Missing filename or base64 data' });
+      }
+
+      // Check and decode raw or data-URI base64 formats
+      let buffer: Buffer;
+      let ext = path.extname(filename) || '';
+      const matches = base64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+
+      if (matches && matches.length === 3) {
+        const mimeType = matches[1];
+        buffer = Buffer.from(matches[2], 'base64');
+        if (!ext) {
+          const mimeParts = mimeType.split('/');
+          ext = '.' + (mimeParts[1] || 'png');
+        }
+      } else {
+        buffer = Buffer.from(base64, 'base64');
+      }
+
+      // Format a robust safe filename
+      const cleanName = filename.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+      const nameWithoutExt = path.parse(cleanName).name;
+      const finalFilename = `${Date.now()}_${nameWithoutExt}${ext}`;
+
+      const uploadsDir = path.resolve(resolvedDirname, 'public/uploads');
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+
+      const filePath = path.join(uploadsDir, finalFilename);
+      fs.writeFileSync(filePath, buffer);
+      console.log(`[Server] Image/Video uploaded successfully: ${finalFilename}`);
+
+      res.status(200).json({
+        success: true,
+        url: `/uploads/${finalFilename}`
+      });
+    } catch (err: any) {
+      console.error('[Server] Asset upload error:', err);
+      next(err);
+    }
+  });
+
+  // Serve static uploads locally and instantly
+  const uploadsDir = path.resolve(resolvedDirname, 'public/uploads');
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+  app.use('/uploads', express.static(uploadsDir));
+
   app.post('/api/save-to-source', (req, res, next) => {
     try {
       console.log('[Server] Received save request. Body keys:', Object.keys(req.body));

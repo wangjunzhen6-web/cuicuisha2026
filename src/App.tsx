@@ -1131,15 +1131,31 @@ export default function App() {
                             const file = e.target.files?.[0];
                             if (file) {
                               const reader = new FileReader();
-                              reader.onloadend = () => {
+                              reader.onloadend = async () => {
                                 if (typeof reader.result === 'string') {
                                   const rawName = file.name.replace(/\.[^/.]+$/, "");
                                   const name = prompt("请为上传的系统素材单独命名 / Set Name:", rawName) || rawName;
+                                  
+                                  let finalUrl = reader.result;
+                                  try {
+                                    const res = await fetch('/api/upload', {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({ filename: file.name, base64: reader.result })
+                                    });
+                                    const data = await res.json();
+                                    if (data.success && data.url) {
+                                      finalUrl = data.url;
+                                    }
+                                  } catch (err) {
+                                    console.error("Upload failed, fallback to base64", err);
+                                  }
+
                                   const newAsset: LibraryImage = {
                                     id: 'lib_' + Date.now(),
                                     name: name,
                                     category: "独立素材库",
-                                    path: reader.result,
+                                    path: finalUrl,
                                     ratio: "3:4",
                                     description: "用户上传保存的独立素材库图片/视频"
                                   };
@@ -1151,7 +1167,7 @@ export default function App() {
                                   // Select instantly
                                   setEditingPracticeWork({
                                     ...editingPracticeWork,
-                                    imageUrl: reader.result
+                                    imageUrl: finalUrl
                                   });
                                 }
                               };
@@ -1284,23 +1300,38 @@ export default function App() {
                               const file = e.target.files?.[0];
                               if (file) {
                                 const reader = new FileReader();
-                                reader.onloadend = () => {
+                                reader.onloadend = async () => {
                                   if (typeof reader.result === 'string') {
+                                    let finalUrl = reader.result;
+                                    try {
+                                      const res = await fetch('/api/upload', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ filename: file.name, base64: reader.result })
+                                      });
+                                      const data = await res.json();
+                                      if (data.success && data.url) {
+                                        finalUrl = data.url;
+                                      }
+                                    } catch (err) {
+                                      console.error("Upload failed, fallback to base64", err);
+                                    }
+
                                     setEditingPracticeWork({
                                       ...editingPracticeWork,
-                                      imageUrl: reader.result
+                                      imageUrl: finalUrl
                                     });
 
                                     // Automatically save new local uploads into the system material library
                                     const rawName = file.name.replace(/\.[^/.]+$/, "");
                                     const nextImgName = `上传・${rawName}`;
-                                    const exists = libraryImages.some(lib => lib.path === reader.result);
+                                    const exists = libraryImages.some(lib => lib.path === finalUrl);
                                     if (!exists) {
                                       const newAsset: LibraryImage = {
                                         id: 'lib_upload_' + Date.now(),
                                         name: nextImgName,
                                         category: "本地上传",
-                                        path: reader.result,
+                                        path: finalUrl,
                                         ratio: "3:4",
                                         description: "通过本地上传自动备份的素材/视频"
                                       };
@@ -1673,9 +1704,23 @@ export default function App() {
                           const file = e.target.files?.[0];
                           if (file) {
                             const r = new FileReader();
-                            r.onloadend = () => {
+                            r.onloadend = async () => {
                               if (typeof r.result === 'string') {
-                                setContactLinks(prev => ({ ...prev, wechatQr: r.result as string }));
+                                try {
+                                  const res = await fetch('/api/upload', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ filename: file.name, base64: r.result })
+                                  });
+                                  const data = await res.json();
+                                  if (data.success && data.url) {
+                                    setContactLinks(prev => ({ ...prev, wechatQr: data.url }));
+                                  } else {
+                                    setContactLinks(prev => ({ ...prev, wechatQr: r.result as string }));
+                                  }
+                                } catch (err) {
+                                  setContactLinks(prev => ({ ...prev, wechatQr: r.result as string }));
+                                }
                               }
                             };
                             r.readAsDataURL(file);
@@ -1710,9 +1755,23 @@ export default function App() {
                           const file = e.target.files?.[0];
                           if (file) {
                             const r = new FileReader();
-                            r.onloadend = () => {
+                            r.onloadend = async () => {
                               if (typeof r.result === 'string') {
-                                setContactLinks(prev => ({ ...prev, xiaohongshuQr: r.result as string }));
+                                try {
+                                  const res = await fetch('/api/upload', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ filename: file.name, base64: r.result })
+                                  });
+                                  const data = await res.json();
+                                  if (data.success && data.url) {
+                                    setContactLinks(prev => ({ ...prev, xiaohongshuQr: data.url }));
+                                  } else {
+                                    setContactLinks(prev => ({ ...prev, xiaohongshuQr: r.result as string }));
+                                  }
+                                } catch (err) {
+                                  setContactLinks(prev => ({ ...prev, xiaohongshuQr: r.result as string }));
+                                }
                               }
                             };
                             r.readAsDataURL(file);

@@ -643,11 +643,28 @@ function Interactive3DCard({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setTempImageSrc("Uploading...");
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         if (event.target?.result) {
-          setTempImageSrc(event.target.result as string);
-          setImageError(false);
+          try {
+            const res = await fetch('/api/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ filename: file.name, base64: event.target.result as string })
+            });
+            const data = await res.json();
+            if (data.success && data.url) {
+              setTempImageSrc(data.url);
+              setImageError(false);
+            } else {
+              setTempImageSrc(event.target.result as string);
+              setImageError(false);
+            }
+          } catch (err) {
+            setTempImageSrc(event.target.result as string);
+            setImageError(false);
+          }
         }
       };
       reader.readAsDataURL(file);
@@ -1117,11 +1134,28 @@ function DynamicLayout({
   const handleKVFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setTempKVImageSrc("Uploading...");
       const reader = new FileReader();
-      reader.onload = (event) => {
+      reader.onload = async (event) => {
         if (event.target?.result) {
-          setTempKVImageSrc(event.target.result as string);
-          setKvImageError(false);
+          try {
+            const res = await fetch('/api/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ filename: file.name, base64: event.target.result as string })
+            });
+            const data = await res.json();
+            if (data.success && data.url) {
+              setTempKVImageSrc(data.url);
+              setKvImageError(false);
+            } else {
+              setTempKVImageSrc(event.target.result as string);
+              setKvImageError(false);
+            }
+          } catch (err) {
+            setTempKVImageSrc(event.target.result as string);
+            setKvImageError(false);
+          }
         }
       };
       reader.readAsDataURL(file);
@@ -2322,9 +2356,23 @@ function EditableImage({
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         if (typeof reader.result === "string" && onUpdate) {
-          onUpdate(reader.result);
+          try {
+            const res = await fetch('/api/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ filename: file.name, base64: reader.result })
+            });
+            const data = await res.json();
+            if (data.success && data.url) {
+              onUpdate(data.url);
+            } else {
+              onUpdate(reader.result);
+            }
+          } catch (err) {
+            onUpdate(reader.result);
+          }
           setIsEditing(false);
         }
       };

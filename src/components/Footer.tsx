@@ -58,9 +58,23 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = async () => {
         if (typeof reader.result === 'string') {
-          setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
+          try {
+            const res = await fetch('/api/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ filename: file.name, base64: reader.result })
+            });
+            const data = await res.json();
+            if (data.success && data.url) {
+              setEditForm(prev => ({ ...prev, wechatQr: data.url }));
+            } else {
+              setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
+            }
+          } catch (err) {
+            setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
+          }
         }
       };
       reader.readAsDataURL(file);
