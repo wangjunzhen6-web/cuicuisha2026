@@ -22,33 +22,18 @@ import uploadedFooter from './data/uploaded_footer.json';
 const staticProjects = uploadedProjects as Project[];
 
 function mergeProjectsWithStatic(loaded: Project[]): Project[] {
-  const merged = loaded
-    .filter(loadedProj => staticProjects.some(p => p.id === loadedProj.id))
-    .map(loadedProj => {
-      const staticProj = staticProjects.find(p => p.id === loadedProj.id)!;
-      
-      // Merge secondaryImages: if static has more or newer items, use static items as fallback,
-      // otherwise preserve user changes.
-      const mergedSecondary = [...(staticProj.secondaryImages || [])];
-      if (loadedProj.secondaryImages) {
-        loadedProj.secondaryImages.forEach((img, i) => {
-          if (img) {
-            mergedSecondary[i] = img;
-          }
-        });
-      }
-      
-      return {
-        ...loadedProj,
-        title: staticProj.title,
-        subtitle: staticProj.subtitle,
-        description: staticProj.description,
-        strategy: staticProj.strategy,
-        secondaryImages: mergedSecondary.length > 0 ? mergedSecondary : undefined
-      };
-    });
+  const merged = loaded.map(loadedProj => {
+    const staticProj = staticProjects.find(p => p.id === loadedProj.id);
+    if (!staticProj) return loadedProj;
+    
+    // Gracefully merge loaded (customized) project over static default template, preserving user choices 100%
+    return {
+      ...staticProj,
+      ...loadedProj
+    };
+  });
 
-  // Find any static projects not present in loaded projects
+  // Include any default static projects that are missing in the cached user database
   const missing = staticProjects.filter(staticProj => !loaded.some(lp => lp.id === staticProj.id));
   return [...merged, ...missing];
 }
