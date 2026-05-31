@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       "借助假期出游热度，转转为迎接用户旅行拍照需求，针对拍照类手机推出了丰厚的优惠券。旨在提升GMV规模，助力手机达成订单目标",
     imageUrl:
-      "/src/assets/images/input_file_1.png",
+      "/images/input_file_1.png",
     category: "landing",
     tags: ["大促设计", "视觉落地", "摄影出行"],
     designBy: "王军震",
@@ -25,12 +25,12 @@ export const projects: Project[] = [
       "利用AI生成摄影类素材图来解决没有对应素材图的痛点",
     ],
     secondaryImages: [
-      "/src/assets/images/input_file_1.png", // 0: Top KV representation
-      "/src/assets/images/regenerated_image_1779597241074.jpg", // 1: Moodboard (情绪版)
-      "/src/assets/images/input_file_1.png", // 2: Secondary KV showcase
-      "/src/assets/images/input_file_8.png", // 3: Autumn "金秋出游"
-      "/src/assets/images/input_file_4.png", // 4: Winter "冬日寻趣"
-      "/src/assets/images/input_file_9.png", // 5: Daily "拍照神器"
+      "/images/input_file_1.png", // 0: Top KV representation
+      "/images/regenerated_image_1779597241074.jpg", // 1: Moodboard (情绪版)
+      "/images/input_file_1.png", // 2: Secondary KV showcase
+      "/images/input_file_8.png", // 3: Autumn "金秋出游"
+      "/images/input_file_4.png", // 4: Winter "冬日寻趣"
+      "/images/input_file_9.png", // 5: Daily "拍照神器"
     ],
   },
   {
@@ -39,20 +39,20 @@ export const projects: Project[] = [
     subtitle: "SHEEP CORNER IP DESIGN",
     description:
       "羊角角表面是个总犯困的小羊， 实际上是专门执行夜间秘密行动的成员。 喜欢足球、夜跑、滑板 and 深夜一个人待着。 有时候会在早上收到神秘消息： 没人知道羊角角真正的任务是什么。 只知道每当夜晚降临， 它就会消失在城市里。🌙它会穿过没人的小巷、便利店门口、凌晨的天桥。专门接那些奇怪的任务：回收被丢掉的梦想、寻找失踪的快乐、或者偷偷暗杀掉人类今天的坏情绪。",
-    imageUrl: "/src/assets/images/regenerated_image_1779007978012.png",
+    imageUrl: "/images/regenerated_image_1779007978012.png",
     category: "personal",
     tags: ["3D建模", "角色设计", "插图"],
     designBy: "王军震",
     themeColor: "#4A90E2",
     layout: "dynamic",
     secondaryImages: [
-      "/src/assets/images/regenerated_image_1779007978012.png", // 0: 16:9 Hero
-      "/src/assets/images/input_file_4.png", // 1: 草图
-      "/src/assets/images/input_file_8.png", // 2: 白膜
-      "/src/assets/images/input_file_sketch_3.png", // 3: 彩绘
-      "/src/assets/images/input_file_sketch_bg.png", // 4: 背景线稿
-      "/src/assets/images/input_file_1.png", // 5: Showcase Lineup
-      "/src/assets/images/regenerated_image_1779002206742.mp4", // 6: Story Video
+      "/images/regenerated_image_1779007978012.png", // 0: 16:9 Hero
+      "/images/input_file_4.png", // 1: 草图
+      "/images/input_file_8.png", // 2: 白膜
+      "/images/input_file_sketch_3.png", // 3: 彩绘
+      "/images/input_file_sketch_bg.png", // 4: 背景线稿
+      "/images/input_file_1.png", // 5: Showcase Lineup
+      "/images/regenerated_image_1779002206742.mp4", // 6: Story Video
     ],
   },
   {
@@ -78,22 +78,22 @@ export const projects: Project[] = [
     ],
     secondaryImages: [
       "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=600",
-      "/src/assets/images/regenerated_image_1779597196859.jpg",
+      "/images/regenerated_image_1779597196859.jpg",
       "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=600",
-      "/src/assets/images/regenerated_image_1779592516053.jpg",
-      "/src/assets/images/regenerated_image_1779592603233.jpg",
-      "/src/assets/images/regenerated_image_1779592906318.jpg",
-      "/src/assets/images/input_file_11.mp4",
-      "/src/assets/images/mobile_landing_animation_1.mp4",
-      "/src/assets/images/mobile_landing_animation_2.mp4",
-      "/src/assets/images/regenerated_image_1779814741616.jpg",
-      "/src/assets/images/regenerated_image_1779814840378.jpg",
-      "/src/assets/images/regenerated_image_1779814888473.jpg",
-      "/src/assets/images/regenerated_image_1779597003959.jpg",
-      "/src/assets/images/regenerated_image_1779592919714.jpg",
-      "/src/assets/images/regenerated_image_1779592930990.jpg",
-      "/src/assets/images/regenerated_image_1779597241074.jpg",
-      "/src/assets/images/regenerated_image_1779597196859.jpg",
+      "/images/regenerated_image_1779592516053.jpg",
+      "/images/regenerated_image_1779592603233.jpg",
+      "/images/regenerated_image_1779592906318.jpg",
+      "/images/input_file_11.mp4",
+      "/images/mobile_landing_animation_1.mp4",
+      "/images/mobile_landing_animation_2.mp4",
+      "/images/regenerated_image_1779814741616.jpg",
+      "/images/regenerated_image_1779814840378.jpg",
+      "/images/regenerated_image_1779814888473.jpg",
+      "/images/regenerated_image_1779597003959.jpg",
+      "/images/regenerated_image_1779592919714.jpg",
+      "/images/regenerated_image_1779592930990.jpg",
+      "/images/regenerated_image_1779597241074.jpg",
+      "/images/regenerated_image_1779597196859.jpg",
     ],
   },
   {
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     title: "开春出行季",
     subtitle: "SPRING TRAVEL CAMPAIGN",
     description: "春日融融，暖风拂面，户外旅行与踏春拍照热度飙升。转转平台顺应潮流推出「开春出行季」营销专区活动，主打精选运动穿戴与手持摄影神器日租福利。项目视觉落地围绕“春日出游，一拍封神”的核心概念，将潮流大疆 Pocket 3 及高端配件置于自然年轮木墩上，完美契合开春清新鲜活的主色调。旨在直击出游核心转化点，通过视觉冲击力实现品类租售转化的全新突破。",
-    imageUrl: "/src/assets/images/spring_travel_kv_1779886513533.png",
+    imageUrl: "/images/spring_travel_kv_1779886513533.png",
     category: "landing",
     tags: ["营销视觉", "产品精细渲染", "租售转化大促"],
     designBy: "王军震",
@@ -113,12 +113,12 @@ export const projects: Project[] = [
       "全链路多端延展提效：运用 3D 渲染器与 AI 图像提速工具相结合，在极短周期内自适应分发宽幅横幅、手机会场、以及品类优惠卡券等多态视觉模态"
     ],
     secondaryImages: [
-      "/src/assets/images/spring_travel_kv_1779886513533.png",
-      "/src/assets/images/camera_gear_detail_1779886599446.png",
-      "/src/assets/images/spring_travel_kv_1779886513533.png",
-      "/src/assets/images/camera_gear_detail_1779886599446.png",
-      "/src/assets/images/spring_travel_kv_1779886513533.png",
-      "/src/assets/images/camera_gear_detail_1779886599446.png"
+      "/images/spring_travel_kv_1779886513533.png",
+      "/images/camera_gear_detail_1779886599446.png",
+      "/images/spring_travel_kv_1779886513533.png",
+      "/images/camera_gear_detail_1779886599446.png",
+      "/images/spring_travel_kv_1779886513533.png",
+      "/images/camera_gear_detail_1779886599446.png"
     ]
   },
   {
@@ -126,18 +126,18 @@ export const projects: Project[] = [
     title: "转转熊IP应用",
     subtitle: "AIGC生成运营视觉场景与活动",
     description: "AIGC生成运营视觉场景与活动",
-    imageUrl: "/src/assets/images/zhuanzhuan_bear_kv_1779894206662.png",
+    imageUrl: "/images/zhuanzhuan_bear_kv_1779894206662.png",
     category: "personal",
     tags: ["3D卡通IP", "潮玩手办设计", "LORA模型训练", "视觉规范落地"],
     designBy: "王军震",
     themeColor: "#FF4D4F",
     layout: "dynamic",
     secondaryImages: [
-      "/src/assets/images/zhuanzhuan_bear_kv_1779894206662.png",
-      "/src/assets/images/bear_art_toy_1_1779894230407.png",
-      "/src/assets/images/bear_skate_2_1779894250563.png",
-      "/src/assets/images/bear_cyber_3_1779894269826.png",
-      "/src/assets/images/bear_street_4_1779894288795.png"
+      "/images/zhuanzhuan_bear_kv_1779894206662.png",
+      "/images/bear_art_toy_1_1779894230407.png",
+      "/images/bear_skate_2_1779894250563.png",
+      "/images/bear_cyber_3_1779894269826.png",
+      "/images/bear_street_4_1779894288795.png"
     ],
   },
   {
@@ -171,7 +171,7 @@ export const projects: Project[] = [
 export const experiences: any[] = [
   {
     company: "转转",
-    logo: "/src/assets/images/regenerated_image_1778957787641.png",
+    logo: "/images/regenerated_image_1778957787641.png",
     role: "运营视觉设计师 | 转转平台设计",
     period: "2024年7月-至今",
     color: "#ff4d4f",
@@ -183,7 +183,7 @@ export const experiences: any[] = [
   },
   {
     company: "滴滴",
-    logo: "/src/assets/images/regenerated_image_1778957990481.png",
+    logo: "/images/regenerated_image_1778957990481.png",
     role: "创意视觉实习生 | 网约车平台设计",
     period: "2023年10月-2024年4月",
     color: "#ff8800",

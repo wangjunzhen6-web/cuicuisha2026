@@ -1197,49 +1197,49 @@ function DynamicLayout({
       phase: `STAGE_0${i + 1}`
     })) : [
       {
-        src: "/src/assets/images/bear_art_toy_1_1779894230407.png",
+        src: "/images/bear_art_toy_1_1779894230407.png",
         title: "01 :: MODERN ART TOY",
         subtitle: "LIMITED VINYL FIGURINE",
         phase: "PHASE_01 // ARCHITECTURE"
       },
       {
-        src: "/src/assets/images/bear_skate_2_1779894250563.png",
+        src: "/images/bear_skate_2_1779894250563.png",
         title: "02 :: STREET SKATE CRUISER",
         subtitle: "OUTDOOR ACTIVE WEAR",
         phase: "PHASE_02 // ACTION"
       },
       {
-        src: "/src/assets/images/bear_cyber_3_1779894269826.png",
+        src: "/images/bear_cyber_3_1779894269826.png",
         title: "03 :: VIRTUAL NEO VISOR",
         subtitle: "TECH GLOWING GLASSES",
         phase: "PHASE_03 // SCIENCE"
       },
       {
-        src: "/src/assets/images/bear_street_4_1779894288795.png",
+        src: "/images/bear_street_4_1779894288795.png",
         title: "04 :: HIP-HOP DOWNTOWN",
         subtitle: "OVERSIZED GRAFFITI STYLE",
         phase: "PHASE_04 // CULTURE"
       },
       {
-        src: "/src/assets/images/bear_cyber_3_1779894269826.png",
+        src: "/images/bear_cyber_3_1779894269826.png",
         title: "05 :: CYBERPUNK AURORA SPECIAL",
         subtitle: "LASER HEADPHONE VISOR",
         phase: "PHASE_05 // IMMERSIVE"
       },
       {
-        src: "/src/assets/images/bear_art_toy_1_1779894230407.png",
+        src: "/images/bear_art_toy_1_1779894230407.png",
         title: "06 :: METALLIC CHROME EDITION",
         subtitle: "PLATINUM SERIES PLASTIC",
         phase: "PHASE_06 // PREMIUM"
       },
       {
-        src: "/src/assets/images/bear_street_4_1779894288795.png",
+        src: "/images/bear_street_4_1779894288795.png",
         title: "07 :: TOKYO POP-CULTURE WAVE",
         subtitle: "STREET CULTURE GANG",
         phase: "PHASE_07 // CORE"
       },
       {
-        src: "/src/assets/images/bear_skate_2_1779894250563.png",
+        src: "/images/bear_skate_2_1779894250563.png",
         title: "08 :: CALIFORNIA SUNSET DRIFT",
         subtitle: "RETRO CASUAL LIFESTYLE",
         phase: "PHASE_08 // LEISURE"
@@ -1253,13 +1253,13 @@ function DynamicLayout({
       phase: `SCENE_0${i + 1} // MOBILE`
     })) : [
       {
-        src: "/src/assets/images/zhuanzhuan_bear_kv_1779894206662.png",
+        src: "/images/zhuanzhuan_bear_kv_1779894206662.png",
         title: "09 :: SHIBUYA OVERTAKE",
         subtitle: "URBAN BRAND INTEGRATION",
         phase: "SCENE_01 // ATMOSPHERE"
       },
       {
-        src: "/src/assets/images/spring_travel_kv_1779886513533.png",
+        src: "/images/spring_travel_kv_1779886513533.png",
         title: "10 :: FUTURISTIC TECH LAB",
         subtitle: "HARD-SURFACE CYBERPUNK ASSEMBLY",
         phase: "SCENE_02 // ENVIRON"
@@ -2777,7 +2777,7 @@ function CyberLayout({
   const mobileVideo = project.secondaryImages?.find((img) => {
     const lower = img?.toLowerCase();
     return lower?.endsWith(".mp4") || lower?.endsWith(".webm") || lower?.endsWith(".mov") || img?.startsWith("data:video/");
-  }) || project.secondaryImages?.[6] || "/src/assets/images/input_file_11.mp4";
+  }) || project.secondaryImages?.[6] || "/images/input_file_11.mp4";
   const mobile1 = project.secondaryImages?.[3] || project.imageUrl;
   const mobile2 = project.secondaryImages?.[4] || project.imageUrl;
   const mobile3 = project.secondaryImages?.[5] || project.imageUrl;
@@ -3313,7 +3313,7 @@ function CyberLayout({
                   <motion.img 
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    src="/src/assets/images/camera_gear_detail_1779886599446.png" 
+                    src="/images/camera_gear_detail_1779886599446.png" 
                     alt="DJI Camera Mockup" 
                     className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-transform group-hover:scale-105 duration-500"
                   />
@@ -3321,7 +3321,7 @@ function CyberLayout({
 
                 <div className="relative z-10 self-start">
                   <button 
-                    onClick={() => onZoom("/src/assets/images/camera_gear_detail_1779886599446.png")}
+                    onClick={() => onZoom("/images/camera_gear_detail_1779886599446.png")}
                     className="flex items-center gap-1.5 bg-black px-6 py-2.5 rounded-full text-white text-xs font-black shadow-md md:shadow-lg transition-all duration-300 hover:bg-neutral-900 group-hover:px-7 active:scale-95"
                   >
                     <span>点击查看</span>
@@ -3338,7 +3338,7 @@ function CyberLayout({
               
               {/* iPhone Mockup Container */}
               <div className="relative w-full max-w-[320px] aspect-[1124/2350] border-[9px] border-zinc-900 bg-black rounded-[42px] shadow-[0_30px_70px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col group/phone cursor-pointer"
-                   onClick={() => onZoom("/src/assets/images/spring_travel_kv_1779886513533.png")}
+                   onClick={() => onZoom("/images/spring_travel_kv_1779886513533.png")}
               >
                 {/* Dynamic island notch */}
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[90px] h-[25px] bg-black rounded-full z-40 flex items-center justify-end px-3">
@@ -3361,7 +3361,7 @@ function CyberLayout({
                   <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white/10 to-transparent pointer-events-none z-10" />
                   
                   {/* Background green park image */}
-                  <img src="/src/assets/images/spring_travel_kv_1779886513533.png" alt="Spring Field Preview" className="absolute inset-0 w-full h-full object-cover grayscale-[15%] brightness-105 group-hover/phone:scale-105 transition-transform duration-1000" />
+                  <img src="/images/spring_travel_kv_1779886513533.png" alt="Spring Field Preview" className="absolute inset-0 w-full h-full object-cover grayscale-[15%] brightness-105 group-hover/phone:scale-105 transition-transform duration-1000" />
                   
                   {/* Floating particles color wash overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#265330]/80 via-[#265330]/20 to-[#2b82f6]/10" />
@@ -3384,7 +3384,7 @@ function CyberLayout({
                     <div className="rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md p-3 flex items-center justify-between shadow-xl">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/40 p-1 flex">
-                          <img src="/src/assets/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
+                          <img src="/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
                         </div>
                         <div>
                           <span className="block text-[10px] font-black leading-tight text-white">大疆 Pocket3 云台</span>
@@ -3397,7 +3397,7 @@ function CyberLayout({
                     <div className="rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md p-3 flex items-center justify-between shadow-xl">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 p-1 flex">
-                          <img src="/src/assets/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
+                          <img src="/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
                         </div>
                         <div>
                           <span className="block text-[10px] font-black leading-tight text-white">潮流复古相机包</span>
@@ -3408,7 +3408,7 @@ function CyberLayout({
                     </div>
 
                     <span className="text-[8px] text-zinc-400 text-center uppercase tracking-widest mt-1 block font-mono select-none">
-                      往下滑动体验更多装备 // SWIPE FOR MORE
+                      往滑动体验更多装备 // SWIPE FOR MORE
                     </span>
                   </div>
                 </div>
@@ -3439,10 +3439,10 @@ function CyberLayout({
 
             {/* Giant camera on right */}
             <div 
-              onClick={() => onZoom("/src/assets/images/spring_travel_kv_1779886513533.png")}
+              onClick={() => onZoom("/images/spring_travel_kv_1779886513533.png")}
               className="absolute right-0 top-0 bottom-0 w-1/3 min-w-[200px] h-full hidden md:block cursor-zoom-in filter group-hover:brightness-105 duration-300"
             >
-              <img src="/src/assets/images/spring_travel_kv_1779886513533.png" alt="Big camera" className="w-full h-full object-cover rounded-l-[10rem] border-l border-white/20 transition-all group-hover:scale-105 duration-700" />
+              <img src="/images/spring_travel_kv_1779886513533.png" alt="Big camera" className="w-full h-full object-cover rounded-l-[10rem] border-l border-white/20 transition-all group-hover:scale-105 duration-700" />
             </div>
           </div>
         </section>

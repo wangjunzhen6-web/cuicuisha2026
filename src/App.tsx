@@ -697,7 +697,7 @@ export default function App() {
                           category: '三维渲染 / AIGC创意',
                           tags: ['C4D + Octane', 'AIGC 情感化', '2026作品'],
                           description: '探索冰雪奇缘式流光渐变在手机大促会场的融合，利用精细拟物化玻璃质感建立冬日寻趣分会场的视觉底色。',
-                          imageUrl: '/src/assets/images/regenerated_image_1779597003959.jpg'
+                          imageUrl: '/images/regenerated_image_1779597003959.jpg'
                         },
                         {
                           id: 'p2',
@@ -705,7 +705,7 @@ export default function App() {
                           category: '视觉探索 / 排版',
                           tags: ['大促插画', '色彩实验', '大促练习'],
                           description: '秋季明媚与丰收主基调 of 插图色彩映射，尝试金黄枫树与探索出行的大开排版，凸显金秋出行活动氛围。',
-                          imageUrl: '/src/assets/images/regenerated_image_1779592919714.jpg'
+                          imageUrl: '/images/regenerated_image_1779592919714.jpg'
                         },
                         {
                           id: 'p3',
@@ -713,7 +713,7 @@ export default function App() {
                           category: 'UI/UX / 运营大促',
                           tags: ['组件化看板', '日常视觉', '交互引导'],
                           description: '利用严谨的栅格系统和拟物化组件设计，在拍照神器日常分会场重构用户利益点卡片和晒单引导交互流。',
-                          imageUrl: '/src/assets/images/regenerated_image_1779592930990.jpg'
+                          imageUrl: '/images/regenerated_image_1779592930990.jpg'
                         },
                         {
                           id: 'p4',
@@ -721,7 +721,7 @@ export default function App() {
                           category: '色彩实验 / 灵感定调',
                           tags: ['情绪板', '配色演练', '视觉重构'],
                           description: '利用高级暗夜紫与拉丝金属的高对比度，为下一个世代的大促运营设计重构视觉情绪触点与品质定调。',
-                          imageUrl: '/src/assets/images/regenerated_image_1779597241074.jpg'
+                          imageUrl: '/images/regenerated_image_1779597241074.jpg'
                         }
                       ];
                       setPracticeWorks(defaults);
@@ -810,6 +810,7 @@ export default function App() {
                         <img
                           src={work.imageUrl}
                           alt={work.title}
+                          referrerPolicy="no-referrer"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                         />
                       )
@@ -922,6 +923,7 @@ export default function App() {
                 <img 
                   src={contactLinks.wechatQr} 
                   alt="微信二维码" 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-contain pointer-events-none"
                 />
               </div>
@@ -961,6 +963,7 @@ export default function App() {
                 <img 
                   src={contactLinks.xiaohongshuQr} 
                   alt="小红书二维码" 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-contain pointer-events-none"
                 />
               </div>
@@ -1211,6 +1214,7 @@ export default function App() {
                                 <img
                                   src={asset.path}
                                   alt={asset.name}
+                                  referrerPolicy="no-referrer"
                                   className="w-full h-full object-cover"
                                 />
                               )
@@ -1281,6 +1285,7 @@ export default function App() {
                           <img
                             src={editingPracticeWork.imageUrl}
                             alt="Preview"
+                            referrerPolicy="no-referrer"
                             className="w-full h-full object-cover"
                           />
                         )

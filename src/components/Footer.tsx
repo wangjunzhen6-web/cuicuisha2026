@@ -160,6 +160,7 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
                 <img 
                   src={links.wechatQr} 
                   alt="WeChat QR Code" 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-contain"
                 />
               </div>

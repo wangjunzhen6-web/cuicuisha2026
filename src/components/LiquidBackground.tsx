@@ -399,7 +399,7 @@ export default function LiquidBackground() {
           className="w-full h-full"
         >
           <img
-            src="/src/assets/images/chrome_cyber_pod_1779626552718.png"
+            src="/images/chrome_cyber_pod_1779626552718.png"
             alt="Top Chrome Pod"
             className="w-full h-full object-contain opacity-95 drop-shadow-[0_20px_50px_rgba(139,92,246,0.25)]"
             referrerPolicy="no-referrer"
@@ -429,7 +429,7 @@ export default function LiquidBackground() {
           className="w-full h-full"
         >
           <img
-            src="/src/assets/images/chrome_cyber_pod_1779626552718.png"
+            src="/images/chrome_cyber_pod_1779626552718.png"
             alt="Bottom Chrome Pod"
             className="w-full h-full object-contain opacity-85 scale-x-[-1] drop-shadow-[0_-20px_45px_rgba(59,130,246,0.2)]"
             referrerPolicy="no-referrer"
