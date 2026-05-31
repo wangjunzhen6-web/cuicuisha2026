@@ -14,6 +14,8 @@ export interface Project {
   strategy?: string[];
   themeColor?: string;
   secondaryImages?: string[];
+  processImages?: string[];
+  layout?: 'default' | 'art' | 'ui' | 'dynamic' | 'cyber';
 }
 
 export interface WorkExperience {
@@ -21,4 +23,13 @@ export interface WorkExperience {
   role: string;
   period: string;
   description: string;
+}
+
+export interface PracticeWork {
+  id: string;
+  title: string;
+  category: string;
+  tags: string[];
+  description: string;
+  imageUrl: string;
 }

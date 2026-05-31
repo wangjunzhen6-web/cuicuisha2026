@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@700;900&family=Syne:wght@800&family=Cinzel:wght@700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -9,6 +10,8 @@
   --color-aurora-cyan: #06b6d4;
   
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-artistic-zh: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+  --font-artistic-en: "Cinzel", "Syne", sans-serif;
 }
 
 @layer base {
@@ -16,6 +19,11 @@
     background-color: #000000;
     color: #ffffff;
     overflow-x: hidden;
+    cursor: none !important;
+  }
+  
+  a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
   }
 }
 
@@ -48,3 +56,33 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.animate-scan {
+  animation: scan 3s linear infinite;
+}
+
+@keyframes rotate-flux {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.animate-rotate-flux {
+  animation: rotate-flux 3s linear infinite;
+}
+
+/* Scrollbar utility classes to hide scrollbars but keep functionality */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

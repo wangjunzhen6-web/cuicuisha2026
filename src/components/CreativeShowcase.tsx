@@ -15,14 +15,14 @@ const CREATIVE_WORKS = [
 
 export const CreativeShowcase: React.FC = () => {
   return (
-    <section className="relative min-h-[900px] overflow-hidden bg-black py-24">
+    <section className="relative min-h-[900px] bg-black py-24">
       <div className="container mx-auto px-4">
         {/* Title Section */}
         <div className="relative z-10 mb-20 flex flex-col items-center justify-center text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap justify-center gap-x-4 text-6xl font-black italic tracking-tighter md:text-8xl"
+            className="flex flex-wrap justify-center gap-x-[0.3em] text-6xl font-black italic tracking-tighter md:text-8xl"
           >
             {["CREATIVE", "AI"].map((word, wordIdx) => (
               <div key={wordIdx} className="flex">
@@ -110,9 +110,9 @@ export const CreativeShowcase: React.FC = () => {
         </div>
       </div>
 
-      {/* Background Glows */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 top-1/4 -z-10 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[100px]" />
+      {/* Background Glows - Adaptive */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[80vw] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[180px]" />
+      <div className="pointer-events-none absolute right-[-10%] top-1/4 -z-10 h-[50vw] w-[50vw] rounded-full bg-purple-500/5 blur-[150px]" />
     </section>
   );
 };

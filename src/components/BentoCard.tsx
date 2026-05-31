@@ -71,9 +71,9 @@ export default function BentoCard({ project, onClick }: Props) {
       </div>
 
       {/* Title and Description */}
-      <div className="mb-8">
-        <h3 className="mb-3 text-4xl font-bold text-white tracking-tight leading-tight">{project.title}</h3>
-        <p className="text-lg text-white/40 leading-relaxed font-medium">
+      <div className="mb-8 flex flex-col flex-1 gap-3">
+        <h3 className="text-4xl font-bold text-white tracking-tight leading-tight">{project.title}</h3>
+        <p className="text-lg text-white/40 leading-relaxed font-medium line-clamp-3">
           {project.description}
         </p>
       </div>
