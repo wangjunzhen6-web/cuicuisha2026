@@ -118,8 +118,8 @@ export const projects: Project[] = [
     title: "转转熊IP应用",
     subtitle: "AIGC生成运营视觉场景与活动",
     description: "AIGC生成运营视觉场景与活动",
-    coverImage: "/images/zhuanzhuan-bear-ip.png",
-    imageUrl: "/images/zhuanzhuan-bear-ip.png",
+    coverImage: "/images/IP-feng-mian.jpg",
+    imageUrl: "/images/IP-feng-mian.jpg",
     category: "personal",
     year: 2026,
     tags: ["3D卡通IP", "潮玩手办设计", "LORA模型训练", "视觉规范落地"],
@@ -127,11 +127,17 @@ export const projects: Project[] = [
     themeColor: "#FF4D4F",
     layout: "dynamic",
     secondaryImages: [
-      "/images/zhuanzhuan-bear-ip.png",
-      "/images/bear-art-toy-1.png",
-      "/images/bear-skate-2.png",
-      "/images/bear-cyber-3.png",
-      "/images/bear-street-4.png"
+      "/images/IP-feng-mian.jpg",
+      "/images/chun-fen.png",
+      "/images/xia-ri.png",
+      "/images/qiu-fen.png",
+      "/images/dong-zhi.png",
+      "/images/yuan-xiao.webp",
+      "/images/duan-wu.png",
+      "/images/qing-ming.png",
+      "/images/zhong-qiu.webp",
+      "/images/qing-mingkv-1.jpg",
+      "/images/huan-du-zhong-qiu-KV-1.jpg"
     ],
   },
   {

@@ -139,20 +139,7 @@ const EmittingChar = ({ char, index, gradient }: { key?: any, char: string, inde
 };
 
 export default function App() {
-  const [portfolioProjects, setPortfolioProjects] = useState<Project[]>(() => {
-    const cached = localStorage.getItem('sharks_portfolio_projects');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed)) {
-          return mergeProjectsWithStatic(parsed);
-        }
-      } catch (err) {
-        console.error('Failed to parse portfolio projects from cache:', err);
-      }
-    }
-    return projects;
-  });
+  const [portfolioProjects, setPortfolioProjects] = useState<Project[]>(projects);
   
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
@@ -167,136 +154,65 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
   
-  const [practiceWorks, setPracticeWorks] = useState<PracticeWork[]>(() => {
-    const cached = localStorage.getItem('sharks_portfolio_practice_works');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed)) {
-          return parsed.map((item: any) => {
-            let imageUrl = item.imageUrl || '';
-            if (imageUrl.includes('postimg.cc') || imageUrl.includes('regenerated_image') || imageUrl.includes('/src/assets/images')) {
-              if (item.id === 'p1' || item.title.includes('冬日')) imageUrl = '/images/practice-winter-render.jpg';
-              else if (item.id === 'p2' || item.title.includes('金秋')) imageUrl = '/images/practice-autumn-illustration.jpg';
-              else if (item.id === 'p3' || item.title.includes('拍照')) imageUrl = '/images/practice-camera-board.jpg';
-              else if (item.id === 'p4' || item.title.includes('灰紫') || item.title.includes('暗夜紫')) imageUrl = '/images/travel-photo-season.jpg';
-            }
-            return {
-              id: item.id || Math.random().toString(36).substring(7),
-              title: item.title || '',
-              category: item.category || '',
-              tags: Array.isArray(item.tags) ? item.tags : [],
-              description: item.description || '',
-              imageUrl
-            };
-          });
-        }
-      } catch (_) {}
+  const [practiceWorks, setPracticeWorks] = useState<PracticeWork[]>([
+    {
+      id: 'p1',
+      title: '冬日寻趣 C4D 三维大促质感实验',
+      category: '三维渲染 / AIGC创意',
+      tags: ['C4D + Octane', 'AIGC 情感化', '2026作品'],
+      description: '探索冰雪奇缘式流光渐变在手机大促会场的融合，利用精细拟物化玻璃质感建立冬日寻趣分会场的视觉底色。',
+      imageUrl: '/images/practice-winter-render.jpg'
+    },
+    {
+      id: 'p2',
+      title: '金秋出游季微立体插画重排',
+      category: '视觉探索 / 排版',
+      tags: ['大促插画', '色彩实验', '大促练习'],
+      description: '秋季明媚与丰收主基调的插图色彩映射，尝试金黄枫树与探索出行的大开排版，凸显金秋出行活动氛围。',
+      imageUrl: '/images/practice-autumn-illustration.jpg'
+    },
+    {
+      id: 'p3',
+      title: '拍照神器高转化组件化看板',
+      category: 'UI/UX / 运营大促',
+      tags: ['组件化看板', '日常视觉', '交互引导'],
+      description: '利用严谨的栅格系统 and 拟物化组件设计，在拍照神器日常分会场重构用户利益点卡片 and 晒单引导交互流。',
+      imageUrl: '/images/practice-camera-board.jpg'
+    },
+    {
+      id: 'p4',
+      title: '沉浸灰紫渐变情绪板设计',
+      category: '色彩实验 / 灵感定调',
+      tags: ['情绪板', '配色演练', '视觉重构'],
+      description: '利用高级暗夜紫与拉丝金属的高对比度，为下一个世代的大促运营设计重构视觉情绪触点与品质定调。',
+      imageUrl: '/images/travel-photo-season.jpg'
     }
-    return [
-      {
-        id: 'p1',
-        title: '冬日寻趣 C4D 三维大促质感实验',
-        category: '三维渲染 / AIGC创意',
-        tags: ['C4D + Octane', 'AIGC 情感化', '2026作品'],
-        description: '探索冰雪奇缘式流光渐变在手机大促会场的融合，利用精细拟物化玻璃质感建立冬日寻趣分会场的视觉底色。',
-        imageUrl: '/images/practice-winter-render.jpg'
-      },
-      {
-        id: 'p2',
-        title: '金秋出游季微立体插画重排',
-        category: '视觉探索 / 排版',
-        tags: ['大促插画', '色彩实验', '大促练习'],
-        description: '秋季明媚与丰收主基调的插图色彩映射，尝试金黄枫树与探索出行的大开排版，凸显金秋出行活动氛围。',
-        imageUrl: '/images/practice-autumn-illustration.jpg'
-      },
-      {
-        id: 'p3',
-        title: '拍照神器高转化组件化看板',
-        category: 'UI/UX / 运营大促',
-        tags: ['组件化看板', '日常视觉', '交互引导'],
-        description: '利用严谨的栅格系统 and 拟物化组件设计，在拍照神器日常分会场重构用户利益点卡片 and 晒单引导交互流。',
-        imageUrl: '/images/practice-camera-board.jpg'
-      },
-      {
-        id: 'p4',
-        title: '沉浸灰紫渐变情绪板设计',
-        category: '色彩实验 / 灵感定调',
-        tags: ['情绪板', '配色演练', '视觉重构'],
-        description: '利用高级暗夜紫与拉丝金属的高对比度，为下一个世代的大促运营设计重构视觉情绪触点与品质定调。',
-        imageUrl: '/images/travel-photo-season.jpg'
-      }
-    ];
-  });
+  ]);
 
-  const [libraryImages, setLibraryImages] = useState<LibraryImage[]>(() => {
-    const cached = localStorage.getItem('sharks_portfolio_library_assets');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed)) return parsed;
-      } catch (_) {}
-    }
-    return PRACTICE_ASSETS_LIBRARY;
-  });
+  const [libraryImages, setLibraryImages] = useState<LibraryImage[]>(PRACTICE_ASSETS_LIBRARY);
   
   const [zoomedPracticeImage, setZoomedPracticeImage] = useState<string | null>(null);
   const [editingPracticeWork, setEditingPracticeWork] = useState<PracticeWork | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const [isAdmin, setIsAdmin] = useState(() => {
-    const local = localStorage.getItem('sharks_portfolio_admin_active');
-    return local === 'true';
-  });
+  const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [adminPasswordInput, setAdminPasswordInput] = useState('');
   const [loginError, setLoginError] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  const [contactLinks, setContactLinks] = useState(() => {
-    const saved = localStorage.getItem('sharks_footer_links');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        return {
-          wechatQr: parsed.wechatQr || 'https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=300',
-          xiaohongshuQr: parsed.xiaohongshuQr || 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&q=80&w=300',
-          xiaohongshu: parsed.xiaohongshu || 'https://www.xiaohongshu.com',
-          title: (!parsed.title || parsed.title === '联系方式 // CONTACT') ? '联系方式' : parsed.title,
-          description: parsed.description || '工作与商务合作请添加微信，或点击、扫描关注我的小红书主页'
-        };
-      } catch (e) {}
-    }
-    return {
-      wechatQr: 'https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=300',
-      xiaohongshuQr: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&q=80&w=300',
-      xiaohongshu: 'https://www.xiaohongshu.com',
-      title: '联系方式',
-      description: '工作与商务合作请添加微信，或点击、扫描关注我的小红书主页'
-    };
+  const [contactLinks, setContactLinks] = useState({
+    wechatQr: 'https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=300',
+    xiaohongshuQr: 'https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?auto=format&fit=crop&q=80&w=300',
+    xiaohongshu: 'https://www.xiaohongshu.com',
+    title: '联系方式',
+    description: '工作与商务合作请添加微信，或点击、扫描关注我的小红书主页'
   });
   const [showContactEditModal, setShowContactEditModal] = useState(false);
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const saved = localStorage.getItem('sharks_footer_links');
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          setContactLinks(prev => ({
-            ...prev,
-            ...parsed
-          }));
-        } catch (_) {}
-      }
-    };
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('contact-links-changed', handleStorageChange);
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('contact-links-changed', handleStorageChange);
-    };
+    // No-op
   }, []);
 
   // Ashynchronous mount-load from IndexedDB to recover massive base64 images perfectly
@@ -1069,376 +985,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Edit Practice Work Dialogue Modal */}
-      <AnimatePresence>
-        {isAdmin && editingPracticeWork && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setEditingPracticeWork(null)}
-            className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex justify-center items-center p-4 overflow-y-auto"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-neutral-950 border border-purple-500/30 rounded-3xl p-6 md:p-8 max-w-2xl w-full relative shadow-[0_0_50px_rgba(167,139,250,0.2)] flex flex-col gap-6 my-8"
-            >
-              <button
-                onClick={() => setEditingPracticeWork(null)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors cursor-pointer p-1 rounded-lg hover:bg-white/5"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div className="text-center space-y-1">
-                <span className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-[0.2em] block mb-1">
-                  EDIT PERSONAL WORK // 个人作品物料修改
-                </span>
-                <h4 className="text-xl font-black text-white tracking-widest uppercase mb-1">编辑其他个人作品</h4>
-                <p className="text-xs text-zinc-400">
-                  自定义本栏目的标题、分类标签、细节描述及高画质视觉物料。可在下方素材库快速选用高精度图片，亦可直接本地上传。
-                </p>
-              </div>
-
-              {/* Form elements */}
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const nextWorks = practiceWorks.map(w => w.id === editingPracticeWork.id ? editingPracticeWork : w);
-                  setPracticeWorks(nextWorks);
-                  savePracticeWorksToDB(nextWorks);
-                  safeSetLocalStorage('sharks_portfolio_practice_works', JSON.stringify(nextWorks));
-                  
-                  // Automatically save any new custom/pasted image into the system material library as well
-                  if (editingPracticeWork.imageUrl) {
-                    const exists = libraryImages.some(lib => lib.path === editingPracticeWork.imageUrl);
-                    if (!exists) {
-                      const newAsset: LibraryImage = {
-                        id: 'lib_auto_' + Date.now(),
-                        name: `保存物料・${editingPracticeWork.title || '自定义图片'}`,
-                        category: "个人作品",
-                        path: editingPracticeWork.imageUrl,
-                        ratio: "3:4",
-                        description: "保存作品时自动加入素材库的作品主图"
-                      };
-                      const nextLib = [newAsset, ...libraryImages];
-                      setLibraryImages(nextLib);
-                      saveLibraryImagesToDB(nextLib);
-                      safeSetLocalStorage('sharks_portfolio_library_assets', JSON.stringify(nextLib));
-                    }
-                  }
-
-                  setEditingPracticeWork(null);
-                }}
-                className="space-y-4 text-left"
-              >
-                {/* Visual Material Library Grid / 独立素材库 */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block font-bold">
-                      🖼️ System Material Library // 系统素材主库
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-mono text-purple-400 font-bold">
-                        {libraryImages.length} 个模版素材
-                      </span>
-                      <label className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-purple-500/40 bg-purple-950/20 hover:bg-purple-900/40 text-[9px] font-mono font-bold text-purple-300 hover:text-white cursor-pointer transition-all">
-                        <Plus className="h-3 w-3 text-purple-400" />
-                        <span>增设新素材</span>
-                        <input
-                          type="file"
-                          accept="image/*,video/*"
-                          className="hidden"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              const reader = new FileReader();
-                              reader.onloadend = () => {
-                                if (typeof reader.result === 'string') {
-                                  const rawName = file.name.replace(/\.[^/.]+$/, "");
-                                  const name = prompt("请为上传的系统素材单独命名 / Set Name:", rawName) || rawName;
-                                  const newAsset: LibraryImage = {
-                                    id: 'lib_' + Date.now(),
-                                    name: name,
-                                    category: "独立素材库",
-                                    path: reader.result,
-                                    ratio: "3:4",
-                                    description: "用户上传保存的独立素材库图片/视频"
-                                  };
-                                  const nextLib = [newAsset, ...libraryImages];
-                                  setLibraryImages(nextLib);
-                                  saveLibraryImagesToDB(nextLib);
-                                  safeSetLocalStorage('sharks_portfolio_library_assets', JSON.stringify(nextLib));
-                                  
-                                  // Select instantly
-                                  setEditingPracticeWork({
-                                    ...editingPracticeWork,
-                                    imageUrl: reader.result
-                                  });
-                                }
-                              };
-                              reader.readAsDataURL(file);
-                            }
-                          }}
-                        />
-                      </label>
-                    </div>
-                  </div>
-                  
-                  {/* Grid or micro scroll container */}
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 max-h-[190px] overflow-y-auto p-1.5 bg-neutral-900/40 rounded-2xl border border-white/5">
-                    {libraryImages.map((asset) => {
-                      const isSelected = editingPracticeWork.imageUrl === asset.path;
-                      return (
-                        <div
-                          key={asset.id}
-                          onClick={() => setEditingPracticeWork({
-                            ...editingPracticeWork,
-                            imageUrl: asset.path
-                          })}
-                          className={`group relative cursor-pointer rounded-xl border p-1 transition-all duration-300 ${
-                            isSelected 
-                              ? 'bg-purple-950/40 border-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.35)]' 
-                              : 'bg-zinc-950/60 border-white/5 hover:border-purple-500/30 hover:bg-zinc-900/90'
-                          }`}
-                        >
-                          <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-zinc-900">
-                            {asset.path ? (
-                              isVideoUrl(asset.path) ? (
-                                <video
-                                  src={asset.path}
-                                  autoPlay
-                                  loop
-                                  muted
-                                  playsInline
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <img
-                                  src={asset.path}
-                                  alt={asset.name}
-                                  className="w-full h-full object-cover"
-                                />
-                              )
-                            ) : (
-                              <div className="w-full h-full bg-zinc-950 flex items-center justify-center">
-                                <Image className="h-4 w-4 text-zinc-650" />
-                              </div>
-                            )}
-                            <div className="absolute bottom-1 right-1 bg-black/80 text-[7px] font-mono text-[#00ffc3] px-1 rounded border border-white/5 z-10">
-                              {asset.ratio}
-                            </div>
-
-                            {/* Floating Delete from Library Button */}
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const nextLib = libraryImages.filter(item => item.id !== asset.id);
-                                setLibraryImages(nextLib);
-                                saveLibraryImagesToDB(nextLib);
-                                safeSetLocalStorage('sharks_portfolio_library_assets', JSON.stringify(nextLib));
-                                
-                                // If the deleted image was selected, clean it up
-                                if (editingPracticeWork.imageUrl === asset.path) {
-                                  setEditingPracticeWork({
-                                    ...editingPracticeWork,
-                                    imageUrl: ''
-                                  });
-                                }
-                              }}
-                              className="absolute top-1 right-1 h-5 w-5 rounded bg-black/95 hover:bg-rose-950 hover:border-rose-500 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 cursor-pointer pointer-events-auto"
-                              title="删除此素材"
-                            >
-                              <Trash2 className="h-2.5 w-2.5 text-rose-400 group-hover:text-rose-200" />
-                            </button>
-                          </div>
-                          
-                          {/* Inner title and description */}
-                          <div className="mt-1 px-1">
-                            <h5 className="text-[8px] text-white font-bold truncate leading-tight" title={asset.name}>
-                              {asset.name}
-                            </h5>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* File Image/Video Selector & Dropzone */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    Custom Image/Video Upload & Link // 本地上传或粘贴外部链接
-                  </label>
-                  <div className="flex items-center gap-4 bg-neutral-900 border border-white/10 rounded-2xl p-4">
-                    <div className="w-16 h-20 bg-zinc-850 rounded-xl overflow-hidden border border-white/5 flex-shrink-0 flex items-center justify-center relative">
-                      {editingPracticeWork.imageUrl ? (
-                        isVideoUrl(editingPracticeWork.imageUrl) ? (
-                          <video
-                            src={editingPracticeWork.imageUrl}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <img
-                            src={editingPracticeWork.imageUrl}
-                            alt="Preview"
-                            className="w-full h-full object-cover"
-                          />
-                        )
-                      ) : (
-                        <Image className="h-5 w-5 text-zinc-650" />
-                      )}
-                    </div>
-                    <div className="flex-1 space-y-2">
-                       <div className="flex items-center gap-2">
-                        <label className="bg-purple-600 hover:bg-purple-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg cursor-pointer transition-colors duration-200 uppercase inline-block">
-                          选择本地文件 / Upload File
-                          <input
-                            type="file"
-                            accept="image/*,video/*"
-                            className="hidden"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) {
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                  if (typeof reader.result === 'string') {
-                                    setEditingPracticeWork({
-                                      ...editingPracticeWork,
-                                      imageUrl: reader.result
-                                    });
-
-                                    // Automatically save new local uploads into the system material library
-                                    const rawName = file.name.replace(/\.[^/.]+$/, "");
-                                    const nextImgName = `上传・${rawName}`;
-                                    const exists = libraryImages.some(lib => lib.path === reader.result);
-                                    if (!exists) {
-                                      const newAsset: LibraryImage = {
-                                        id: 'lib_upload_' + Date.now(),
-                                        name: nextImgName,
-                                        category: "本地上传",
-                                        path: reader.result,
-                                        ratio: "3:4",
-                                        description: "通过本地上传自动备份的素材/视频"
-                                      };
-                                      const nextLib = [newAsset, ...libraryImages];
-                                      setLibraryImages(nextLib);
-                                      saveLibraryImagesToDB(nextLib);
-                                      safeSetLocalStorage('sharks_portfolio_library_assets', JSON.stringify(nextLib));
-                                    }
-                                  }
-                                };
-                                reader.readAsDataURL(file);
-                              }
-                            }}
-                          />
-                        </label>
-                      </div>
-                      <p className="text-[10px] text-zinc-500 leading-normal">
-                        支持上传本地 PNG、JPG、WEBP 格式图片，或 MP4、WebM 格式视频，自动转存。
-                      </p>
-                    </div>
-                  </div>
-                  {/* Text Input for URL fallback */}
-                  <input
-                    type="text"
-                    value={editingPracticeWork.imageUrl || ''}
-                    onChange={(e) => setEditingPracticeWork({
-                      ...editingPracticeWork,
-                      imageUrl: e.target.value
-                    })}
-                    placeholder="或者此处会自动同步当前所选素材的对应路径 / 亦可在此直接填入自定义外部 URL"
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-2.5 outline-none focus:border-purple-500 transition-colors"
-                  />
-                </div>
-
-                {/* Form input fields */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                       Work Title // 作品名称
-                    </label>
-                    <input
-                      type="text"
-                      value={editingPracticeWork.title || ''}
-                      onChange={(e) => setEditingPracticeWork({
-                        ...editingPracticeWork,
-                        title: e.target.value
-                      })}
-                      className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                      Category // 核心分类
-                    </label>
-                    <input
-                      type="text"
-                      value={editingPracticeWork.category || ''}
-                      onChange={(e) => setEditingPracticeWork({
-                        ...editingPracticeWork,
-                        category: e.target.value
-                      })}
-                      className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    Sub-Tags // 细分标签 (逗号分隔)
-                  </label>
-                  <input
-                    type="text"
-                    value={editingPracticeWork.tags?.join(', ') || ''}
-                    onChange={(e) => setEditingPracticeWork({
-                      ...editingPracticeWork,
-                      tags: e.target.value.split(',').map(s => s.trim()).filter(Boolean)
-                    })}
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    Description // 创作说明
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={editingPracticeWork.description || ''}
-                    onChange={(e) => setEditingPracticeWork({
-                      ...editingPracticeWork,
-                      description: e.target.value
-                    })}
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors resize-none leading-relaxed"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white border border-purple-500/30 rounded-xl py-3.5 text-xs font-black tracking-widest flex items-center justify-center gap-1.5 transition-colors cursor-pointer uppercase shadow-lg shadow-purple-950/40"
-                >
-                  <Check className="h-4 w-4" />
-                  <span>SAVE CHANGES // 保存更改</span>
-                </button>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Footer */}
       <footer className="bg-neutral-950 py-12 px-8 border-t border-white/5 relative overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
@@ -1450,316 +996,10 @@ export default function App() {
               Built with precision and high-contrast digital craftsmanship
             </p>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm">
-              <span className={`inline-block w-2 h-2 rounded-full ${isAdmin ? 'bg-emerald-400 animate-pulse' : 'bg-white/10'}`} />
-              <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-white/50">
-                {isAdmin ? 'ADMIN AUTH ACTIVE' : 'SECURE GUEST MODE'}
-              </span>
-            </div>
-
-            {isAdmin ? (
-              <button
-                onClick={() => {
-                  setIsAdmin(false);
-                  localStorage.removeItem('sharks_portfolio_admin_active');
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-rose-500/30 bg-rose-950/20 text-rose-400 hover:bg-rose-950/40 hover:border-rose-500/50 text-[10px] font-mono font-bold uppercase tracking-widest transition-all cursor-pointer"
-              >
-                <LogOut className="h-3 w-3" />
-                <span>Exit Portal // 退出</span>
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  setLoginError('');
-                  setShowAdminModal(true);
-                }}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-purple-500/30 bg-purple-950/20 text-purple-400 hover:bg-purple-950/40 hover:border-purple-500/50 text-[10px] font-mono font-bold uppercase tracking-widest transition-all cursor-pointer"
-              >
-                <Lock className="h-3 w-3" />
-                <span>Designer portal // 登录</span>
-              </button>
-            )}
-          </div>
         </div>
       </footer>
 
-      {/* Admin Verification Modal */}
-      <AnimatePresence>
-        {showAdminModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowAdminModal(false)}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex justify-center items-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-neutral-950 border border-purple-500/30 rounded-3xl p-6 md:p-8 max-w-md w-full relative shadow-[0_0_50px_rgba(167,139,250,0.15)] text-center flex flex-col gap-6"
-            >
-              <button
-                onClick={() => setShowAdminModal(false)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors cursor-pointer p-1 rounded-lg hover:bg-white/5"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-[0.2em] block mb-1">
-                  DESIGNER AUTHENTICATION
-                </span>
-                <h4 className="text-xl font-black text-white tracking-widest uppercase mb-1">设计师后台验证</h4>
-                <p className="text-xs text-zinc-400 leading-relaxed">
-                  请输入设计师凭证进入内容管理面板，解锁作品集的高级设计物料替换功能。
-                </p>
-              </div>
-
-              {loginSuccess ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="py-4 space-y-3 flex flex-col items-center"
-                >
-                  <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
-                    <Check className="h-6 w-6 stroke-[3]" />
-                  </div>
-                  <span className="text-sm font-bold text-emerald-400 font-mono tracking-widest uppercase">ACCESS GRANTED // 验证成功</span>
-                  <p className="text-[11px] text-zinc-400">欢迎回来，设计师王军震。素材替换功能已全面开启。</p>
-                </motion.div>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (adminPasswordInput === '232323.Aike') {
-                      setLoginSuccess(true);
-                      setLoginError('');
-                      setTimeout(() => {
-                        setIsAdmin(true);
-                        safeSetLocalStorage('sharks_portfolio_admin_active', 'true');
-                        setShowAdminModal(false);
-                        setLoginSuccess(false);
-                        setAdminPasswordInput('');
-                      }, 1500);
-                    } else {
-                      setLoginError('认证钥匙不匹配，请重新输入');
-                    }
-                  }}
-                  className="space-y-4 text-left"
-                >
-                  <div className="space-y-1.5 relative">
-                    <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">Access Key // 验证密钥</label>
-                    <input
-                      type="password"
-                      value={adminPasswordInput}
-                      onChange={(e) => setAdminPasswordInput(e.target.value)}
-                      placeholder="请输入认证密码"
-                      className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 focus:bg-neutral-800 transition-colors"
-                      required
-                      autoFocus
-                    />
-                  </div>
-
-                  {loginError && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-rose-500 bg-rose-950/10 border border-rose-500/20 px-3 py-2 rounded-xl text-center font-bold"
-                    >
-                      {loginError}
-                    </motion.p>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="w-full bg-purple-600 hover:bg-purple-500 text-white border border-purple-500/30 rounded-xl py-3.5 text-xs font-black tracking-widest flex items-center justify-center gap-1.5 transition-colors cursor-pointer uppercase shadow-lg shadow-purple-950/40"
-                  >
-                    <Unlock className="h-4 w-4" />
-                    <span>VERIFY ACCESS // 安全登录</span>
-                  </button>
-                </form>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Contact Info Edit Modal */}
-      <AnimatePresence>
-        {showContactEditModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowContactEditModal(false)}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex justify-center items-center p-4 text-white"
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 15 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 15 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-neutral-950 border border-purple-500/30 rounded-3xl p-6 md:p-8 max-w-lg w-full relative shadow-[0_0_50px_rgba(167,139,250,0.15)] flex flex-col gap-6 max-h-[90vh] overflow-y-auto"
-            >
-              <button
-                onClick={() => setShowContactEditModal(false)}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white transition-colors cursor-pointer p-1 rounded-lg hover:bg-white/5"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div className="space-y-1 text-center">
-                <span className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-[0.2em] block mb-1">
-                  // 联系方式配置 //
-                </span>
-                <h4 className="text-xl font-black text-white tracking-widest uppercase mb-1">设计联系方式修改</h4>
-                <p className="text-xs text-zinc-400 leading-relaxed">
-                  更新页尾尾页的内容文字、小红书跳转链接以及上传、替换您的联系二维码。
-                </p>
-              </div>
-
-              <div className="space-y-4 text-left">
-                {/* 1. Title */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    页尾标题
-                  </label>
-                  <input
-                    type="text"
-                    value={contactLinks.title}
-                    onChange={(e) => setContactLinks({ ...contactLinks, title: e.target.value })}
-                    placeholder="例如: 联系方式"
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                  />
-                </div>
-
-                {/* 2. Description */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    页尾描述文案
-                  </label>
-                  <textarea
-                    rows={2}
-                    value={contactLinks.description}
-                    onChange={(e) => setContactLinks({ ...contactLinks, description: e.target.value })}
-                    placeholder="业务合作、咨询请扫码..."
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 resize-none transition-colors"
-                  />
-                </div>
-
-                {/* 3. WeChat QR Code */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    微信二维码图片
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={contactLinks.wechatQr}
-                      onChange={(e) => setContactLinks({ ...contactLinks, wechatQr: e.target.value })}
-                      placeholder="图片网络地址/粘贴链接"
-                      className="flex-1 bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                    />
-                    <label className="shrink-0 flex items-center justify-center gap-1.5 bg-neutral-900 border border-white/10 hover:border-purple-500 hover:bg-neutral-800 rounded-xl px-4 py-3 text-xs font-semibold cursor-pointer text-zinc-300 hover:text-white transition-all">
-                      <Upload className="h-3.5 w-3.5" />
-                      <span>上传二维码</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            const r = new FileReader();
-                            r.onloadend = () => {
-                              if (typeof r.result === 'string') {
-                                setContactLinks(prev => ({ ...prev, wechatQr: r.result as string }));
-                              }
-                            };
-                            r.readAsDataURL(file);
-                          }
-                        }}
-                        className="hidden"
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                {/* 4. Xiaohongshu QR Code */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    小红书二维码图片
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={contactLinks.xiaohongshuQr}
-                      onChange={(e) => setContactLinks({ ...contactLinks, xiaohongshuQr: e.target.value })}
-                      placeholder="图片网络地址/粘贴链接"
-                      className="flex-1 bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                    />
-                    <label className="shrink-0 flex items-center justify-center gap-1.5 bg-neutral-900 border border-white/10 hover:border-purple-500 hover:bg-neutral-800 rounded-xl px-4 py-3 text-xs font-semibold cursor-pointer text-zinc-300 hover:text-white transition-all">
-                      <Upload className="h-3.5 w-3.5" />
-                      <span>上传二维码</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            const r = new FileReader();
-                            r.onloadend = () => {
-                              if (typeof r.result === 'string') {
-                                setContactLinks(prev => ({ ...prev, xiaohongshuQr: r.result as string }));
-                              }
-                            };
-                            r.readAsDataURL(file);
-                          }
-                        }}
-                        className="hidden"
-                      />
-                    </label>
-                  </div>
-                </div>
-
-                {/* 5. Xiaohongshu Link */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block font-bold">
-                    小红书跳转地址
-                  </label>
-                  <input
-                    type="text"
-                    value={contactLinks.xiaohongshu}
-                    onChange={(e) => setContactLinks({ ...contactLinks, xiaohongshu: e.target.value })}
-                    placeholder="https://www.xiaohongshu.com/user/profile/..."
-                    className="w-full bg-neutral-900 border border-white/10 text-xs text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 transition-colors"
-                  />
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    localStorage.setItem('sharks_footer_links', JSON.stringify(contactLinks));
-                    // Dispatch cross-component change trigger for high-fidelity sync
-                    window.dispatchEvent(new Event('storage'));
-                    window.dispatchEvent(new Event('contact-links-changed'));
-                    setShowContactEditModal(false);
-                  }}
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white border border-purple-500/30 rounded-xl py-3.5 text-xs font-black tracking-widest flex items-center justify-center gap-1.5 transition-all cursor-pointer uppercase shadow-lg shadow-purple-950/40 mt-4"
-                >
-                  <Check className="h-4 w-4" />
-                  <span>保存基本设置</span>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <Footer isAdmin={isAdmin} />
+      <Footer />
     </div>
   );
 }

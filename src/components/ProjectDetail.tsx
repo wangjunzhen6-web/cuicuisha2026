@@ -584,7 +584,7 @@ function Interactive3DCard({
   const [tempPhase, setTempPhase] = useState(phase);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+  const isAdmin = false;
 
   // Sync copy text when props change
   React.useEffect(() => {
@@ -1093,7 +1093,7 @@ function DynamicLayout({
   const kvFileInputRef = useRef<HTMLInputElement>(null);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+  const isAdmin = false;
 
   // States for general project details modification
   const [showProjectEdit, setShowProjectEdit] = useState(false);
@@ -1153,7 +1153,7 @@ function DynamicLayout({
 
   if (project.title.includes("转转熊") || project.id === "11" || project.id === "12") {
     const themeColor = project.themeColor || "#FF4D4F";
-    const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
+    const isAdmin = false;
     
     // Load state from local storage or default cards
     const defaultCards = project.id === "12" ? project.secondaryImages.slice(1, 9).map((src, i) => ({
@@ -1163,52 +1163,52 @@ function DynamicLayout({
       phase: `STAGE_0${i + 1}`
     })) : [
       {
-        src: "/images/bear-art-toy-1.png",
-        title: "01 :: MODERN ART TOY",
-        subtitle: "LIMITED VINYL FIGURINE",
-        phase: "PHASE_01 // ARCHITECTURE"
+        src: "/images/chun-fen.png",
+        title: "01 :: 春分微茫 // SPRING",
+        subtitle: "AIGC SEQUENTIAL ESTABLISHMENT",
+        phase: "PHASE_01 // CHUN_FEN"
       },
       {
-        src: "/images/bear-skate-2.png",
-        title: "02 :: STREET SKATE CRUISER",
-        subtitle: "OUTDOOR ACTIVE WEAR",
-        phase: "PHASE_02 // ACTION"
+        src: "/images/xia-ri.png",
+        title: "02 :: 盛夏流光 // SUMMER",
+        subtitle: "CREATIVE SCENARIO定调",
+        phase: "PHASE_02 // XIA_ZHI"
       },
       {
-        src: "/images/bear-cyber-3.png",
-        title: "03 :: VIRTUAL NEO VISOR",
-        subtitle: "TECH GLOWING GLASSES",
-        phase: "PHASE_03 // SCIENCE"
+        src: "/images/qiu-fen.png",
+        title: "03 :: 秋分风华 // AUTUMN",
+        subtitle: "WARM COLORS ACCENTUATION",
+        phase: "PHASE_03 // QIU_FEN"
       },
       {
-        src: "/images/bear-street-4.png",
-        title: "04 :: HIP-HOP DOWNTOWN",
-        subtitle: "OVERSIZED GRAFFITI STYLE",
-        phase: "PHASE_04 // CULTURE"
+        src: "/images/dong-zhi.png",
+        title: "04 :: 冬至瑞雪 // WINTER",
+        subtitle: "COLD TINT SPECTRUM MODELING",
+        phase: "PHASE_04 // DONG_ZHI"
       },
       {
-        src: "/images/bear-cyber-3.png",
-        title: "05 :: CYBERPUNK AURORA SPECIAL",
-        subtitle: "LASER HEADPHONE VISOR",
-        phase: "PHASE_05 // IMMERSIVE"
+        src: "/images/yuan-xiao.webp",
+        title: "05 :: 元宵佳节 // LANTERN",
+        subtitle: "TRADITIONAL FESTIVAL ATMOSPHERE",
+        phase: "PHASE_05 // YUAN_XIAO"
       },
       {
-        src: "/images/bear-art-toy-1.png",
-        title: "06 :: METALLIC CHROME EDITION",
-        subtitle: "PLATINUM SERIES PLASTIC",
-        phase: "PHASE_06 // PREMIUM"
+        src: "/images/duan-wu.png",
+        title: "06 :: 粽情端午 // DRAGON BOAT",
+        subtitle: "GREEN LEAF TEXTURE RIPPLES",
+        phase: "PHASE_06 // DUAN_WU"
       },
       {
-        src: "/images/bear-street-4.png",
-        title: "07 :: TOKYO POP-CULTURE WAVE",
-        subtitle: "STREET CULTURE GANG",
-        phase: "PHASE_07 // CORE"
+        src: "/images/qing-ming.png",
+        title: "07 :: 清明微雨 // QINGMING",
+        subtitle: "PASTEL HIGHLIGHT EMOTION",
+        phase: "PHASE_07 // QING_MING"
       },
       {
-        src: "/images/bear-skate-2.png",
-        title: "08 :: CALIFORNIA SUNSET DRIFT",
-        subtitle: "RETRO CASUAL LIFESTYLE",
-        phase: "PHASE_08 // LEISURE"
+        src: "/images/zhong-qiu.webp",
+        title: "08 :: 佳期中秋 // MID-AUTUMN",
+        subtitle: "GOLDEN HARVEST FULL MOON",
+        phase: "PHASE_08 // ZHONG_QI_U"
       }
     ];
 
@@ -1219,60 +1219,22 @@ function DynamicLayout({
       phase: `SCENE_0${i + 1} // MOBILE`
     })) : [
       {
-        src: "/images/zhuanzhuan-bear-ip.png",
-        title: "09 :: SHIBUYA OVERTAKE",
-        subtitle: "URBAN BRAND INTEGRATION",
-        phase: "SCENE_01 // ATMOSPHERE"
+        src: "/images/qing-mingkv-1.jpg",
+        title: "09 :: 清明春山运营 KV // HERO KV",
+        subtitle: "EASTERN ESTHETICS COMPOSITING",
+        phase: "SCENE_01 // CHUN_SHAN"
       },
       {
-        src: "/images/spring-travel-campaign.png",
-        title: "10 :: FUTURISTIC TECH LAB",
-        subtitle: "HARD-SURFACE CYBERPUNK ASSEMBLY",
-        phase: "SCENE_02 // ENVIRON"
+        src: "/images/huan-du-zhong-qiu-KV-1.jpg",
+        title: "10 :: 欢度中秋主题海报 // FESTIVE KV",
+        subtitle: "HIGH-CONTRAST DIGITAL COLORING",
+        phase: "SCENE_02 // ZHONG_QI_U"
       }
     ];
 
-    const [cards, setCards] = useState(() => {
-      const cached = localStorage.getItem("zhuanzhuan_bear_custom_cards");
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed)) {
-            return parsed.map((item: any, i) => {
-              let src = item.src || '';
-              if (src.includes('postimg.cc') || src.includes('regenerated_image') || src.includes('/src/assets/images')) {
-                src = defaultCards[i]?.src || src;
-              }
-              return { ...item, src };
-            });
-          }
-        } catch (e) {
-          console.error("Failed to parse cached cards:", e);
-        }
-      }
-      return defaultCards;
-    });
+    const [cards, setCards] = useState(() => defaultCards);
 
-    const [wideCards, setWideCards] = useState(() => {
-      const cached = localStorage.getItem("zhuanzhuan_bear_custom_wide_cards");
-      if (cached) {
-        try {
-          const parsed = JSON.parse(cached);
-          if (Array.isArray(parsed)) {
-            return parsed.map((item: any, i) => {
-              let src = item.src || '';
-              if (src.includes('postimg.cc') || src.includes('regenerated_image') || src.includes('/src/assets/images')) {
-                src = defaultWideCards[i]?.src || src;
-              }
-              return { ...item, src };
-            });
-          }
-        } catch (e) {
-          console.error("Failed to parse cached wide cards:", e);
-        }
-      }
-      return defaultWideCards;
-    });
+    const [wideCards, setWideCards] = useState(() => defaultWideCards);
 
     const handleReplaceImage = (index: number, newSrc: string) => {
       const updated = [...cards];
@@ -2312,9 +2274,7 @@ function EditableImage({
   const [activeTab, setActiveTab] = useState<"file" | "url">("file");
 
   // Admin login integration inside component
-  const [isAdmin, setIsAdmin] = useState(() => {
-    return typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
-  });
+  const [isAdmin, setIsAdmin] = useState(false);
   const [adminPassword, setAdminPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -2322,8 +2282,7 @@ function EditableImage({
   // Synchronize admin login status across different component instances
   useEffect(() => {
     const handleAdminSync = () => {
-      const active = typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
-      setIsAdmin(active);
+      setIsAdmin(false);
     };
     window.addEventListener("storage", handleAdminSync);
     window.addEventListener("admin-state-changed", handleAdminSync);
