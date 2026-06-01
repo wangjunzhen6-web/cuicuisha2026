@@ -1156,12 +1156,7 @@ function DynamicLayout({
     const isAdmin = false;
     
     // Load state from local storage or default cards
-    const defaultCards = project.id === "12" ? project.secondaryImages.slice(1, 9).map((src, i) => ({
-      src,
-      title: `0${i + 1} :: SECTION`,
-      subtitle: "DESIGN PROCESS",
-      phase: `STAGE_0${i + 1}`
-    })) : [
+    const defaultCards = (project.id === "11" || project.title.includes("转转熊")) ? [
       {
         src: "/images/chun-fen.png",
         title: "01 :: 春分微茫 // SPRING",
@@ -1210,14 +1205,14 @@ function DynamicLayout({
         subtitle: "GOLDEN HARVEST FULL MOON",
         phase: "PHASE_08 // ZHONG_QI_U"
       }
-    ];
-
-    const defaultWideCards = project.id === "12" ? project.secondaryImages.slice(9).map((src, i) => ({
+    ] : (project.secondaryImages && project.secondaryImages.length > 1) ? project.secondaryImages.slice(1, 9).map((src, i) => ({
       src,
-      title: `MOBILE_0${i + 1} :: UI SHOWCASE`,
-      subtitle: "INTERFACE",
-      phase: `SCENE_0${i + 1} // MOBILE`
-    })) : [
+      title: `0${i + 1} :: SECTION`,
+      subtitle: "DESIGN PROCESS",
+      phase: `STAGE_0${i + 1}`
+    })) : [];
+
+    const defaultWideCards = (project.id === "11" || project.title.includes("转转熊")) ? [
       {
         src: "/images/qing-mingkv-1.jpg",
         title: "09 :: 清明春山运营 KV // HERO KV",
@@ -1230,7 +1225,12 @@ function DynamicLayout({
         subtitle: "HIGH-CONTRAST DIGITAL COLORING",
         phase: "SCENE_02 // ZHONG_QI_U"
       }
-    ];
+    ] : (project.secondaryImages && project.secondaryImages.length > 9) ? project.secondaryImages.slice(9).map((src, i) => ({
+      src,
+      title: `MOBILE_0${i + 1} :: UI SHOWCASE`,
+      subtitle: "INTERFACE",
+      phase: `SCENE_0${i + 1} // MOBILE`
+    })) : [];
 
     const [cards, setCards] = useState(() => defaultCards);
 

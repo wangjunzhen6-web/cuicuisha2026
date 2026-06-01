@@ -20,11 +20,32 @@ function mergeProjectsWithStatic(loaded: Project[]): Project[] {
     .map(loadedProj => {
       const staticProj = projects.find(p => p.id === loadedProj.id)!;
       
-      // If coverImage, imageUrl, or secondaryImages in cache contain 'postimg.cc' or 'regenerated_image' or 'assets/images',
+      // If it's the core Zhuanzhuan Bear project (ID 11), we force the use of pristine static local resources
+      // to resolve any database caching or old remote URL discrepancies.
+      if (loadedProj.id === "11") {
+        return {
+          ...loadedProj,
+          title: staticProj.title,
+          subtitle: staticProj.subtitle,
+          description: staticProj.description,
+          strategy: staticProj.strategy,
+          coverImage: staticProj.coverImage,
+          imageUrl: staticProj.imageUrl,
+          secondaryImages: staticProj.secondaryImages
+        };
+      }
+      
+      // If coverImage, imageUrl, or secondaryImages in cache contain 'postimg.cc' or 'regenerated_image' or 'assets/images' or any 'http' path,
       // we fall back directly to the corresponding staticProj's pristine image path to guarantee correct display.
       const cleanUrl = (url: string | undefined, fallback: string): string => {
         if (!url) return fallback;
-        if (url.includes('postimg.cc') || url.includes('regenerated_image') || url.includes('/src/assets/images')) {
+        if (
+          url.includes('postimg.cc') || 
+          url.includes('regenerated_image') || 
+          url.includes('/src/assets/images') ||
+          url.startsWith('http://') ||
+          url.startsWith('https://')
+        ) {
           return fallback;
         }
         return url;
