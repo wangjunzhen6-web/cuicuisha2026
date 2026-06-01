@@ -1236,7 +1236,16 @@ function DynamicLayout({
       const cached = localStorage.getItem("zhuanzhuan_bear_custom_cards");
       if (cached) {
         try {
-          return JSON.parse(cached);
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            return parsed.map((item: any, i) => {
+              let src = item.src || '';
+              if (src.includes('postimg.cc') || src.includes('regenerated_image') || src.includes('/src/assets/images')) {
+                src = defaultCards[i]?.src || src;
+              }
+              return { ...item, src };
+            });
+          }
         } catch (e) {
           console.error("Failed to parse cached cards:", e);
         }
@@ -1248,7 +1257,16 @@ function DynamicLayout({
       const cached = localStorage.getItem("zhuanzhuan_bear_custom_wide_cards");
       if (cached) {
         try {
-          return JSON.parse(cached);
+          const parsed = JSON.parse(cached);
+          if (Array.isArray(parsed)) {
+            return parsed.map((item: any, i) => {
+              let src = item.src || '';
+              if (src.includes('postimg.cc') || src.includes('regenerated_image') || src.includes('/src/assets/images')) {
+                src = defaultWideCards[i]?.src || src;
+              }
+              return { ...item, src };
+            });
+          }
         } catch (e) {
           console.error("Failed to parse cached wide cards:", e);
         }

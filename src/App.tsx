@@ -20,13 +20,24 @@ function mergeProjectsWithStatic(loaded: Project[]): Project[] {
     .map(loadedProj => {
       const staticProj = projects.find(p => p.id === loadedProj.id)!;
       
-      // Merge secondaryImages: if static has more or newer items, use static items as fallback,
-      // otherwise preserve user changes.
+      // If coverImage, imageUrl, or secondaryImages in cache contain 'postimg.cc' or 'regenerated_image' or 'assets/images',
+      // we fall back directly to the corresponding staticProj's pristine image path to guarantee correct display.
+      const cleanUrl = (url: string | undefined, fallback: string): string => {
+        if (!url) return fallback;
+        if (url.includes('postimg.cc') || url.includes('regenerated_image') || url.includes('/src/assets/images')) {
+          return fallback;
+        }
+        return url;
+      };
+
+      const coverImage = cleanUrl(loadedProj.coverImage, staticProj.coverImage);
+      const imageUrl = cleanUrl(loadedProj.imageUrl, staticProj.imageUrl);
+
       const mergedSecondary = [...(staticProj.secondaryImages || [])];
       if (loadedProj.secondaryImages) {
         loadedProj.secondaryImages.forEach((img, i) => {
           if (img) {
-            mergedSecondary[i] = img;
+            mergedSecondary[i] = cleanUrl(img, staticProj.secondaryImages?.[i] || img);
           }
         });
       }
@@ -37,6 +48,8 @@ function mergeProjectsWithStatic(loaded: Project[]): Project[] {
         subtitle: staticProj.subtitle,
         description: staticProj.description,
         strategy: staticProj.strategy,
+        coverImage,
+        imageUrl,
         secondaryImages: mergedSecondary.length > 0 ? mergedSecondary : undefined
       };
     });
@@ -160,14 +173,23 @@ export default function App() {
       try {
         const parsed = JSON.parse(cached);
         if (Array.isArray(parsed)) {
-          return parsed.map((item: any) => ({
-            id: item.id || Math.random().toString(36).substring(7),
-            title: item.title || '',
-            category: item.category || '',
-            tags: Array.isArray(item.tags) ? item.tags : [],
-            description: item.description || '',
-            imageUrl: item.imageUrl || ''
-          }));
+          return parsed.map((item: any) => {
+            let imageUrl = item.imageUrl || '';
+            if (imageUrl.includes('postimg.cc') || imageUrl.includes('regenerated_image') || imageUrl.includes('/src/assets/images')) {
+              if (item.id === 'p1' || item.title.includes('冬日')) imageUrl = '/images/practice-winter-render.jpg';
+              else if (item.id === 'p2' || item.title.includes('金秋')) imageUrl = '/images/practice-autumn-illustration.jpg';
+              else if (item.id === 'p3' || item.title.includes('拍照')) imageUrl = '/images/practice-camera-board.jpg';
+              else if (item.id === 'p4' || item.title.includes('灰紫') || item.title.includes('暗夜紫')) imageUrl = '/images/travel-photo-season.jpg';
+            }
+            return {
+              id: item.id || Math.random().toString(36).substring(7),
+              title: item.title || '',
+              category: item.category || '',
+              tags: Array.isArray(item.tags) ? item.tags : [],
+              description: item.description || '',
+              imageUrl
+            };
+          });
         }
       } catch (_) {}
     }
