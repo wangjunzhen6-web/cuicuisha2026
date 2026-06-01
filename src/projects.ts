@@ -1,10 +1,5 @@
-import { Project, WorkExperience } from "../types";
+import { Project } from "./types";
 
-/**
- * Project Data
- * Tip: For local images, place them in the /public folder and use absolute paths
- * e.g., imageUrl: "/my-project-shot.png"
- */
 export const projects: Project[] = [
   {
     id: "3",
@@ -12,9 +7,10 @@ export const projects: Project[] = [
     subtitle: "TRAVEL PHOTO SEASON",
     description:
       "借助假期出游热度，转转为迎接用户旅行拍照需求，针对拍照类手机推出了丰厚的优惠券。旨在提升GMV规模，助力手机达成订单目标",
-    imageUrl:
-      "/images/spring_travel_kv_1779886513533.png",
+    coverImage: "/images/travel-photo-season.jpg",
+    imageUrl: "/images/travel-photo-season.jpg",
     category: "landing",
+    year: 2024,
     tags: ["大促设计", "视觉落地", "摄影出行"],
     designBy: "王军震",
     themeColor: "#ff4d4f",
@@ -25,12 +21,11 @@ export const projects: Project[] = [
       "利用AI生成摄影类素材图来解决没有对应素材图的痛点",
     ],
     secondaryImages: [
-      "/images/spring_travel_kv_1779886513533.png", // 0: Top KV representation
-      "/images/camera_gear_detail_1779886599446.png", // 1: Moodboard (情绪版)
-      "/images/spring_travel_kv_1779886513533.png", // 2: Secondary KV showcase
-      "/images/input_file_8.png", // 3: Autumn "金秋出游"
-      "/images/input_file_4.png", // 4: Winter "冬日寻趣"
-      "/images/input_file_9.png", // 5: Daily "拍照神器"
+      "/images/travel-photo-season.jpg",
+      "/images/practice-moodboard.jpg",
+      "/images/practice-autumn-illustration.jpg",
+      "/images/practice-winter-render.jpg",
+      "/images/practice-camera-board.jpg",
     ],
   },
   {
@@ -39,20 +34,22 @@ export const projects: Project[] = [
     subtitle: "SHEEP CORNER IP DESIGN",
     description:
       "羊角角表面是个总犯困的小羊， 实际上是专门执行夜间秘密行动的成员。 喜欢足球、夜跑、滑板 and 深夜一个人待着。 有时候会在早上收到神秘消息： 没人知道羊角角真正的任务是什么。 只知道每当夜晚降临， 它就会消失在城市里。🌙它会穿过没人的小巷、便利店门口、凌晨的天桥。专门接那些奇怪的任务：回收被丢掉的梦想、寻找失踪的快乐、或者偷偷暗杀掉人类今天的坏情绪。",
-    imageUrl: "/images/regenerated_image_1779007978012.png",
+    coverImage: "/images/sheep-corner-ip.png",
+    imageUrl: "/images/sheep-corner-ip.png",
     category: "personal",
+    year: 2025,
     tags: ["3D建模", "角色设计", "插图"],
     designBy: "王军震",
     themeColor: "#4A90E2",
     layout: "dynamic",
     secondaryImages: [
-      "/images/regenerated_image_1779007978012.png", // 0: 16:9 Hero
-      "/images/input_file_4.png", // 1: 草图
-      "/images/input_file_8.png", // 2: 白膜
-      "/images/input_file_sketch_3.png", // 3: 彩绘
-      "/images/chrome_cyber_pod_1779626552718.png", // 4: 背景线稿 / 替代展示
-      "/images/input_file_1.png", // 5: Showcase Lineup
-      "/images/regenerated_image_1779002206742.mp4", // 6: Story Video
+      "/images/sheep-corner-ip.png",
+      "/images/sheep-sketch.png",
+      "/images/sheep-model.png",
+      "/images/sheep-paint.png",
+      "/images/sheep-sketch.png",
+      "/images/sheep-lineup.png",
+      "/images/sheep-story-video.mp4",
     ],
   },
   {
@@ -61,9 +58,10 @@ export const projects: Project[] = [
     subtitle: "SPRING FESTIVAL CARNIVAL",
     description:
       "项目背景：\n借力春节年货消费热潮打造「氢弹大促」营销活动，针对新客、老客、高粘性核心用户等不同圈层人群，定制分层差异化福利与优惠玩法，精准撬动不同用户消费潜力，最大化活动转化。",
-    imageUrl:
-      "/images/unsplash_1543002588.jpg",
+    coverImage: "/images/spring-festival-carnival.jpg",
+    imageUrl: "/images/spring-festival-carnival.jpg",
     category: "landing",
+    year: 2025,
     tags: ["大促设计", "新春年味", "视觉落地", "趣味抢购"],
     designBy: "王军震",
     themeColor: "#e11d48",
@@ -77,23 +75,17 @@ export const projects: Project[] = [
       "主次分明展示年货商品，直观传递大促力度",
     ],
     secondaryImages: [
-      "/images/unsplash_1543002588_600.jpg",
-      "/images/regenerated_image_1779597196859.jpg",
-      "/images/unsplash_1563298723.jpg",
-      "/images/regenerated_image_1779592516053.jpg",
-      "/images/regenerated_image_1779592603233.jpg",
-      "/images/regenerated_image_1779592906318.jpg",
-      "/images/input_file_11.mp4",
-      "/images/mobile_landing_animation_1.mp4",
-      "/images/mobile_landing_animation_2.mp4",
-      "/images/regenerated_image_1779814741616.jpg",
-      "/images/regenerated_image_1779814840378.jpg",
-      "/images/regenerated_image_1779814888473.jpg",
-      "/images/regenerated_image_1779597003959.jpg",
-      "/images/regenerated_image_1779592919714.jpg",
-      "/images/regenerated_image_1779592930990.jpg",
-      "/images/regenerated_image_1779597241074.jpg",
-      "/images/regenerated_image_1779597196859.jpg",
+      "/images/spring-festival-carnival.jpg",
+      "/images/spring-festival-secondary3.jpg",
+      "/images/spring-festival-secondary1.jpg",
+      "/images/spring-festival-secondary2.jpg",
+      "/images/input-file-11.mp4",
+      "/images/618-secondary1.jpg",
+      "/images/618-secondary2.jpg",
+      "/images/practice-winter-render.jpg",
+      "/images/practice-autumn-illustration.jpg",
+      "/images/practice-camera-board.jpg",
+      "/images/practice-moodboard.jpg",
     ],
   },
   {
@@ -101,8 +93,10 @@ export const projects: Project[] = [
     title: "开春出行季",
     subtitle: "SPRING TRAVEL CAMPAIGN",
     description: "春日融融，暖风拂面，户外旅行与踏春拍照热度飙升。转转平台顺应潮流推出「开春出行季」营销专区活动，主打精选运动穿戴与手持摄影神器日租福利。项目视觉落地围绕“春日出游，一拍封神”的核心概念，将潮流大疆 Pocket 3 及高端配件置于自然年轮木墩上，完美契合开春清新鲜活的主色调。旨在直击出游核心转化点，通过视觉冲击力实现品类租售转化的全新突破。",
-    imageUrl: "/images/spring_travel_kv_1779886513533.png",
+    coverImage: "/images/spring-travel-campaign.png",
+    imageUrl: "/images/spring-travel-campaign.png",
     category: "landing",
+    year: 2026,
     tags: ["营销视觉", "产品精细渲染", "租售转化大促"],
     designBy: "王军震",
     themeColor: "#2b82f6",
@@ -113,12 +107,10 @@ export const projects: Project[] = [
       "全链路多端延展提效：运用 3D 渲染器与 AI 图像提速工具相结合，在极短周期内自适应分发宽幅横幅、手机会场、以及品类优惠卡券等多态视觉模态"
     ],
     secondaryImages: [
-      "/images/spring_travel_kv_1779886513533.png",
-      "/images/camera_gear_detail_1779886599446.png",
-      "/images/spring_travel_kv_1779886513533.png",
-      "/images/camera_gear_detail_1779886599446.png",
-      "/images/spring_travel_kv_1779886513533.png",
-      "/images/camera_gear_detail_1779886599446.png"
+      "/images/spring-travel-campaign.png",
+      "/images/camera-gear-detail.png",
+      "/images/spring-travel-campaign.png",
+      "/images/camera-gear-detail.png",
     ]
   },
   {
@@ -126,18 +118,20 @@ export const projects: Project[] = [
     title: "转转熊IP应用",
     subtitle: "AIGC生成运营视觉场景与活动",
     description: "AIGC生成运营视觉场景与活动",
-    imageUrl: "/images/zhuanzhuan_bear_kv_1779894206662.png",
+    coverImage: "/images/zhuanzhuan-bear-ip.png",
+    imageUrl: "/images/zhuanzhuan-bear-ip.png",
     category: "personal",
+    year: 2026,
     tags: ["3D卡通IP", "潮玩手办设计", "LORA模型训练", "视觉规范落地"],
     designBy: "王军震",
     themeColor: "#FF4D4F",
     layout: "dynamic",
     secondaryImages: [
-      "/images/zhuanzhuan_bear_kv_1779894206662.png",
-      "/images/bear_art_toy_1_1779894230407.png",
-      "/images/bear_skate_2_1779894250563.png",
-      "/images/bear_cyber_3_1779894269826.png",
-      "/images/bear_street_4_1779894288795.png"
+      "/images/zhuanzhuan-bear-ip.png",
+      "/images/bear-art-toy-1.png",
+      "/images/bear-skate-2.png",
+      "/images/bear-cyber-3.png",
+      "/images/bear-street-4.png"
     ],
   },
   {
@@ -145,33 +139,26 @@ export const projects: Project[] = [
     title: "618大促毕业季",
     subtitle: "AIGC GENERATED PROMOTION KV",
     description: "618大促加毕业季，打造专属大促氛围，结合 AI生成背景与交互设计",
-    imageUrl: "/images/unsplash_1523240795612.jpg",
+    coverImage: "/images/618-graduation-campaign.jpg",
+    imageUrl: "/images/618-graduation-campaign.jpg",
     category: "landing",
+    year: 2025,
     tags: ["大促营销", "毕业季", "AIGC", "交互设计"],
     designBy: "王军震",
     themeColor: "#FF4D4F",
     layout: "dynamic",
     secondaryImages: [
-      "/images/unsplash_1523240795612.jpg",
-      "/images/regenerated_image_1779592919714.jpg",
-      "/images/regenerated_image_1779592930990.jpg",
-      "/images/regenerated_image_1779597196859.jpg",
-      "/images/regenerated_image_1779597241074.jpg",
-      "/images/regenerated_image_1779814741616.jpg",
-      "/images/regenerated_image_1779814840378.jpg",
-      "/images/regenerated_image_1779814888473.jpg",
-      "/images/bear_street_4_1779894288795.png",
-      "/images/bear_cyber_3_1779894269826.png",
-      "/images/bear_skate_2_1779894250563.png",
-      "/images/bear_art_toy_1_1779894230407.png"
+      "/images/618-graduation-campaign.jpg",
+      "/images/618-secondary1.jpg",
+      "/images/618-secondary2.jpg"
     ]
   }
 ];
 
-export const experiences: any[] = [
+export const experiences = [
   {
     company: "转转",
-    logo: "/images/regenerated_image_1778957787641.png",
+    logo: "/images/zhuanzhuan-logo.png",
     role: "运营视觉设计师 | 转转平台设计",
     period: "2024年7月-至今",
     color: "#ff4d4f",
@@ -183,7 +170,7 @@ export const experiences: any[] = [
   },
   {
     company: "滴滴",
-    logo: "/images/regenerated_image_1778957990481.png",
+    logo: "/images/didi-logo.png",
     role: "创意视觉实习生 | 网约车平台设计",
     period: "2023年10月-2024年4月",
     color: "#ff8800",

@@ -3,11 +3,13 @@ export type ProjectCategory = 'landing' | 'kv' | 'personal' | 'animation' | 'exp
 export interface Project {
   id: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
+  coverImage: string;
   imageUrl: string;
   videoUrl?: string;
   category: ProjectCategory;
+  year: number | string;
   tags: string[];
   designBy?: string;
   categoryMap?: Record<string, string>;

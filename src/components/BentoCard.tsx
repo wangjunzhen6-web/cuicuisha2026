@@ -81,7 +81,7 @@ export default function BentoCard({ project, onClick }: Props) {
       {/* Image Preview Container */}
       <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[1.5rem] bg-zinc-800 transition-transform duration-700 group-hover:scale-[1.02]">
         <img 
-          src={project.imageUrl} 
+          src={project.coverImage || project.imageUrl} 
           alt={project.title}
           className="h-full w-full object-cover opacity-80 transition-all duration-700 group-hover:opacity-100"
         />

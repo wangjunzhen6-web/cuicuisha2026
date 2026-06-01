@@ -4,13 +4,17 @@ import { Edit2, Save, X, MessageSquare, BookOpen, Upload, Check } from 'lucide-r
 
 export default function Footer({ isAdmin }: { isAdmin: boolean }) {
   const [links, setLinks] = useState({
-    wechatQr: '/images/unsplash_1614741118887.jpg',
+    wechatQr: 'https://images.unsplash.com/photo-1549421263-6c4caf5141e1?auto=format&fit=crop&q=80&w=300',
     xiaohongshu: 'https://xiaohongshu.com/user/profile/...'
   });
   const [isEditing, setIsEditing] = useState(false);
   const [showWechatModal, setShowWechatModal] = useState(false);
   const [editForm, setEditForm] = useState(links);
-  const localIsAdmin = false;
+  const [localIsAdmin, setLocalIsAdmin] = useState(isAdmin);
+
+  useEffect(() => {
+    setLocalIsAdmin(isAdmin);
+  }, [isAdmin]);
 
   useEffect(() => {
     const saved = localStorage.getItem('sharks_footer_links');
@@ -24,6 +28,7 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
   // Reactive synchronizations for administrator active session
   useEffect(() => {
     const checkState = () => {
+      setLocalIsAdmin(typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true');
       const saved = localStorage.getItem('sharks_footer_links');
       if (saved) {
         try {
@@ -53,23 +58,9 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = async () => {
+      reader.onloadend = () => {
         if (typeof reader.result === 'string') {
-          try {
-            const res = await fetch('/api/upload', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, base64: reader.result })
-            });
-            const data = await res.json();
-            if (data.success && data.url) {
-              setEditForm(prev => ({ ...prev, wechatQr: data.url }));
-            } else {
-              setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
-            }
-          } catch (err) {
-            setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
-          }
+          setEditForm(prev => ({ ...prev, wechatQr: reader.result as string }));
         }
       };
       reader.readAsDataURL(file);
@@ -155,7 +146,6 @@ export default function Footer({ isAdmin }: { isAdmin: boolean }) {
                 <img 
                   src={links.wechatQr} 
                   alt="WeChat QR Code" 
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-contain"
                 />
               </div>

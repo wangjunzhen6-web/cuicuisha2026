@@ -584,7 +584,7 @@ function Interactive3DCard({
   const [tempPhase, setTempPhase] = useState(phase);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = false;
+  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
 
   // Sync copy text when props change
   React.useEffect(() => {
@@ -643,28 +643,11 @@ function Interactive3DCard({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setTempImageSrc("Uploading...");
       const reader = new FileReader();
-      reader.onload = async (event) => {
+      reader.onload = (event) => {
         if (event.target?.result) {
-          try {
-            const res = await fetch('/api/upload', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, base64: event.target.result as string })
-            });
-            const data = await res.json();
-            if (data.success && data.url) {
-              setTempImageSrc(data.url);
-              setImageError(false);
-            } else {
-              setTempImageSrc(event.target.result as string);
-              setImageError(false);
-            }
-          } catch (err) {
-            setTempImageSrc(event.target.result as string);
-            setImageError(false);
-          }
+          setTempImageSrc(event.target.result as string);
+          setImageError(false);
         }
       };
       reader.readAsDataURL(file);
@@ -1110,7 +1093,7 @@ function DynamicLayout({
   const kvFileInputRef = useRef<HTMLInputElement>(null);
 
   // Check if admin is active (本人登录账号)
-  const isAdmin = false;
+  const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
 
   // States for general project details modification
   const [showProjectEdit, setShowProjectEdit] = useState(false);
@@ -1134,28 +1117,11 @@ function DynamicLayout({
   const handleKVFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setTempKVImageSrc("Uploading...");
       const reader = new FileReader();
-      reader.onload = async (event) => {
+      reader.onload = (event) => {
         if (event.target?.result) {
-          try {
-            const res = await fetch('/api/upload', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, base64: event.target.result as string })
-            });
-            const data = await res.json();
-            if (data.success && data.url) {
-              setTempKVImageSrc(data.url);
-              setKvImageError(false);
-            } else {
-              setTempKVImageSrc(event.target.result as string);
-              setKvImageError(false);
-            }
-          } catch (err) {
-            setTempKVImageSrc(event.target.result as string);
-            setKvImageError(false);
-          }
+          setTempKVImageSrc(event.target.result as string);
+          setKvImageError(false);
         }
       };
       reader.readAsDataURL(file);
@@ -1187,7 +1153,7 @@ function DynamicLayout({
 
   if (project.title.includes("转转熊") || project.id === "11" || project.id === "12") {
     const themeColor = project.themeColor || "#FF4D4F";
-    const isAdmin = false;
+    const isAdmin = typeof window !== 'undefined' && localStorage.getItem('sharks_portfolio_admin_active') === 'true';
     
     // Load state from local storage or default cards
     const defaultCards = project.id === "12" ? project.secondaryImages.slice(1, 9).map((src, i) => ({
@@ -1197,49 +1163,49 @@ function DynamicLayout({
       phase: `STAGE_0${i + 1}`
     })) : [
       {
-        src: "/images/bear_art_toy_1_1779894230407.png",
+        src: "/images/bear-art-toy-1.png",
         title: "01 :: MODERN ART TOY",
         subtitle: "LIMITED VINYL FIGURINE",
         phase: "PHASE_01 // ARCHITECTURE"
       },
       {
-        src: "/images/bear_skate_2_1779894250563.png",
+        src: "/images/bear-skate-2.png",
         title: "02 :: STREET SKATE CRUISER",
         subtitle: "OUTDOOR ACTIVE WEAR",
         phase: "PHASE_02 // ACTION"
       },
       {
-        src: "/images/bear_cyber_3_1779894269826.png",
+        src: "/images/bear-cyber-3.png",
         title: "03 :: VIRTUAL NEO VISOR",
         subtitle: "TECH GLOWING GLASSES",
         phase: "PHASE_03 // SCIENCE"
       },
       {
-        src: "/images/bear_street_4_1779894288795.png",
+        src: "/images/bear-street-4.png",
         title: "04 :: HIP-HOP DOWNTOWN",
         subtitle: "OVERSIZED GRAFFITI STYLE",
         phase: "PHASE_04 // CULTURE"
       },
       {
-        src: "/images/bear_cyber_3_1779894269826.png",
+        src: "/images/bear-cyber-3.png",
         title: "05 :: CYBERPUNK AURORA SPECIAL",
         subtitle: "LASER HEADPHONE VISOR",
         phase: "PHASE_05 // IMMERSIVE"
       },
       {
-        src: "/images/bear_art_toy_1_1779894230407.png",
+        src: "/images/bear-art-toy-1.png",
         title: "06 :: METALLIC CHROME EDITION",
         subtitle: "PLATINUM SERIES PLASTIC",
         phase: "PHASE_06 // PREMIUM"
       },
       {
-        src: "/images/bear_street_4_1779894288795.png",
+        src: "/images/bear-street-4.png",
         title: "07 :: TOKYO POP-CULTURE WAVE",
         subtitle: "STREET CULTURE GANG",
         phase: "PHASE_07 // CORE"
       },
       {
-        src: "/images/bear_skate_2_1779894250563.png",
+        src: "/images/bear-skate-2.png",
         title: "08 :: CALIFORNIA SUNSET DRIFT",
         subtitle: "RETRO CASUAL LIFESTYLE",
         phase: "PHASE_08 // LEISURE"
@@ -1253,13 +1219,13 @@ function DynamicLayout({
       phase: `SCENE_0${i + 1} // MOBILE`
     })) : [
       {
-        src: "/images/zhuanzhuan_bear_kv_1779894206662.png",
+        src: "/images/zhuanzhuan-bear-ip.png",
         title: "09 :: SHIBUYA OVERTAKE",
         subtitle: "URBAN BRAND INTEGRATION",
         phase: "SCENE_01 // ATMOSPHERE"
       },
       {
-        src: "/images/spring_travel_kv_1779886513533.png",
+        src: "/images/spring-travel-campaign.png",
         title: "10 :: FUTURISTIC TECH LAB",
         subtitle: "HARD-SURFACE CYBERPUNK ASSEMBLY",
         phase: "SCENE_02 // ENVIRON"
@@ -2328,13 +2294,26 @@ function EditableImage({
   const [activeTab, setActiveTab] = useState<"file" | "url">("file");
 
   // Admin login integration inside component
-  const isAdmin = false;
-  const [adminEmail, setAdminEmail] = useState("");
+  const [isAdmin, setIsAdmin] = useState(() => {
+    return typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
+  });
   const [adminPassword, setAdminPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-
+  // Synchronize admin login status across different component instances
+  useEffect(() => {
+    const handleAdminSync = () => {
+      const active = typeof window !== "undefined" && localStorage.getItem("sharks_portfolio_admin_active") === "true";
+      setIsAdmin(active);
+    };
+    window.addEventListener("storage", handleAdminSync);
+    window.addEventListener("admin-state-changed", handleAdminSync);
+    return () => {
+      window.removeEventListener("storage", handleAdminSync);
+      window.removeEventListener("admin-state-changed", handleAdminSync);
+    };
+  }, []);
 
   const isVideo = src?.endsWith(".mp4") || src?.startsWith("data:video/") || src?.includes("mobile-landing-animation") || src?.includes("input_file_11");
 
@@ -2342,23 +2321,9 @@ function EditableImage({
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = async () => {
+      reader.onloadend = () => {
         if (typeof reader.result === "string" && onUpdate) {
-          try {
-            const res = await fetch('/api/upload', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, base64: reader.result })
-            });
-            const data = await res.json();
-            if (data.success && data.url) {
-              onUpdate(data.url);
-            } else {
-              onUpdate(reader.result);
-            }
-          } catch (err) {
-            onUpdate(reader.result);
-          }
+          onUpdate(reader.result);
           setIsEditing(false);
         }
       };
@@ -2377,19 +2342,19 @@ function EditableImage({
 
   const handleAdminSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (adminEmail === "2943543674@qq.com" && adminPassword === "232323.Aike") {
+    if (adminPassword === "232323.Aike") {
       setLoginSuccess(true);
       setLoginError("");
       setTimeout(() => {
         localStorage.setItem("sharks_portfolio_admin_active", "true");
+        setIsAdmin(true);
         setLoginSuccess(false);
-        setAdminEmail("");
         setAdminPassword("");
         // Notify other widgets
         window.dispatchEvent(new Event("admin-state-changed"));
       }, 1000);
     } else {
-      setLoginError("邮箱或钥匙不匹配，请重新输入 // ACCREDITATION FAILED");
+      setLoginError("钥匙不匹配，请重新输入 // ACCREDITATION FAILED");
     }
   };
 
@@ -2501,23 +2466,14 @@ function EditableImage({
                         </span>
                       </div>
                     ) : (
-                      <div className="space-y-3">
-                        <input
-                          type="email"
-                          value={adminEmail}
-                          onChange={(e) => setAdminEmail(e.target.value)}
-                          className="w-full bg-zinc-900 border border-white/10 rounded-2xl p-4 text-center text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all placeholder:text-zinc-600 font-mono"
-                          placeholder="请输入管理员邮箱 // ENTER EMAIL"
-                          autoFocus
-                          required
-                        />
+                      <div className="space-y-4">
                         <input
                           type="password"
                           value={adminPassword}
                           onChange={(e) => setAdminPassword(e.target.value)}
                           className="w-full bg-zinc-900 border border-white/10 rounded-2xl p-4 text-center text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all placeholder:text-zinc-600 font-mono"
                           placeholder="请输入验证密码 // ENTER PASSWORD"
-                          required
+                          autoFocus
                         />
                         {loginError && (
                           <p className="text-[11px] font-mono text-rose-500 font-bold tracking-wide">
@@ -2762,7 +2718,7 @@ function CyberLayout({
   const mobileVideo = project.secondaryImages?.find((img) => {
     const lower = img?.toLowerCase();
     return lower?.endsWith(".mp4") || lower?.endsWith(".webm") || lower?.endsWith(".mov") || img?.startsWith("data:video/");
-  }) || project.secondaryImages?.[6] || "/images/input_file_11.mp4";
+  }) || project.secondaryImages?.[6] || "/images/input-file-11.mp4";
   const mobile1 = project.secondaryImages?.[3] || project.imageUrl;
   const mobile2 = project.secondaryImages?.[4] || project.imageUrl;
   const mobile3 = project.secondaryImages?.[5] || project.imageUrl;
@@ -3298,7 +3254,7 @@ function CyberLayout({
                   <motion.img 
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                    src="/images/camera_gear_detail_1779886599446.png" 
+                    src="/images/camera-gear-detail.png" 
                     alt="DJI Camera Mockup" 
                     className="w-full h-full object-contain filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-transform group-hover:scale-105 duration-500"
                   />
@@ -3306,7 +3262,7 @@ function CyberLayout({
 
                 <div className="relative z-10 self-start">
                   <button 
-                    onClick={() => onZoom("/images/camera_gear_detail_1779886599446.png")}
+                    onClick={() => onZoom("/images/camera-gear-detail.png")}
                     className="flex items-center gap-1.5 bg-black px-6 py-2.5 rounded-full text-white text-xs font-black shadow-md md:shadow-lg transition-all duration-300 hover:bg-neutral-900 group-hover:px-7 active:scale-95"
                   >
                     <span>点击查看</span>
@@ -3323,7 +3279,7 @@ function CyberLayout({
               
               {/* iPhone Mockup Container */}
               <div className="relative w-full max-w-[320px] aspect-[1124/2350] border-[9px] border-zinc-900 bg-black rounded-[42px] shadow-[0_30px_70px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col group/phone cursor-pointer"
-                   onClick={() => onZoom("/images/spring_travel_kv_1779886513533.png")}
+                   onClick={() => onZoom("/images/spring-travel-campaign.png")}
               >
                 {/* Dynamic island notch */}
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-[90px] h-[25px] bg-black rounded-full z-40 flex items-center justify-end px-3">
@@ -3346,7 +3302,7 @@ function CyberLayout({
                   <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white/10 to-transparent pointer-events-none z-10" />
                   
                   {/* Background green park image */}
-                  <img src="/images/spring_travel_kv_1779886513533.png" alt="Spring Field Preview" className="absolute inset-0 w-full h-full object-cover grayscale-[15%] brightness-105 group-hover/phone:scale-105 transition-transform duration-1000" />
+                  <img src="/images/spring-travel-campaign.png" alt="Spring Field Preview" className="absolute inset-0 w-full h-full object-cover grayscale-[15%] brightness-105 group-hover/phone:scale-105 transition-transform duration-1000" />
                   
                   {/* Floating particles color wash overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#265330]/80 via-[#265330]/20 to-[#2b82f6]/10" />
@@ -3369,7 +3325,7 @@ function CyberLayout({
                     <div className="rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md p-3 flex items-center justify-between shadow-xl">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/40 p-1 flex">
-                          <img src="/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
+                          <img src="/images/camera-gear-detail.png" className="w-full h-full object-cover rounded-md" />
                         </div>
                         <div>
                           <span className="block text-[10px] font-black leading-tight text-white">大疆 Pocket3 云台</span>
@@ -3382,7 +3338,7 @@ function CyberLayout({
                     <div className="rounded-2xl bg-black/60 border border-white/10 backdrop-blur-md p-3 flex items-center justify-between shadow-xl">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 p-1 flex">
-                          <img src="/images/camera_gear_detail_1779886599446.png" className="w-full h-full object-cover rounded-md" />
+                          <img src="/images/camera-gear-detail.png" className="w-full h-full object-cover rounded-md" />
                         </div>
                         <div>
                           <span className="block text-[10px] font-black leading-tight text-white">潮流复古相机包</span>
@@ -3424,10 +3380,10 @@ function CyberLayout({
 
             {/* Giant camera on right */}
             <div 
-              onClick={() => onZoom("/images/spring_travel_kv_1779886513533.png")}
+              onClick={() => onZoom("/images/spring-travel-campaign.png")}
               className="absolute right-0 top-0 bottom-0 w-1/3 min-w-[200px] h-full hidden md:block cursor-zoom-in filter group-hover:brightness-105 duration-300"
             >
-              <img src="/images/spring_travel_kv_1779886513533.png" alt="Big camera" className="w-full h-full object-cover rounded-l-[10rem] border-l border-white/20 transition-all group-hover:scale-105 duration-700" />
+              <img src="/images/spring-travel-campaign.png" alt="Big camera" className="w-full h-full object-cover rounded-l-[10rem] border-l border-white/20 transition-all group-hover:scale-105 duration-700" />
             </div>
           </div>
         </section>

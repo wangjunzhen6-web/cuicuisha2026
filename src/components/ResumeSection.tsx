@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { experiences } from '../data/portfolio';
+import { experiences } from '../projects';
 import { Zap, Pin, Scissors, Star } from 'lucide-react';
 
 export default function ResumeSection() {
@@ -21,7 +21,7 @@ export default function ResumeSection() {
             className="relative z-20 aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl bg-zinc-900 border-[12px] border-white shadow-[20px_20px_60px_rgba(0,0,0,0.5)]"
           >
             <img 
-              src="/images/regenerated_image_1778936603936.png" 
+              src="/images/banner.png" 
               alt="Profile"
               className="h-full w-full object-cover grayscale-[0.3] contrast-125"
             />
@@ -100,7 +100,7 @@ export default function ResumeSection() {
                   {/* Company Header */}
                   <div className="flex items-center gap-4">
                     {exp.logo ? (
-                      <img src={exp.logo} defaultValue="" className="h-12 w-auto" alt={exp.company} referrerPolicy="no-referrer" />
+                      <img src={exp.logo} className="h-12 w-auto" alt={exp.company} />
                     ) : (
                       <div className="flex items-center gap-4">
                         <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-[#00ffc3] text-black font-black text-xl">
