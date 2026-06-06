@@ -1158,52 +1158,28 @@ function DynamicLayout({
     // Load state from local storage or default cards
     const defaultCards = (project.id === "11" || project.title.includes("转转熊")) ? [
       {
-        src: "/images/chun-fen.png",
-        title: "01 :: 春分微茫 // SPRING",
-        subtitle: "AIGC SEQUENTIAL ESTABLISHMENT",
-        phase: "PHASE_01 // CHUN_FEN"
+        src: "/src/assets/images/regenerated_image_1780327610363.jpg",
+        title: "01 :: 潮玩周边设计 // ART TOY",
+        subtitle: "3D TOY MODEL DEV & RENDERING",
+        phase: "PHASE_01 // ART_TOY"
       },
       {
-        src: "/images/xia-ri.png",
-        title: "02 :: 盛夏流光 // SUMMER",
-        subtitle: "CREATIVE SCENARIO定调",
-        phase: "PHASE_02 // XIA_ZHI"
+        src: "/src/assets/images/regenerated_image_1780327607068.jpg",
+        title: "02 :: 滑板少年风格 // SKATEBOARD",
+        subtitle: "URBAN STREET SPARK SERIES",
+        phase: "PHASE_02 // SKATE_BEAR"
       },
       {
-        src: "/images/qiu-fen.png",
-        title: "03 :: 秋分风华 // AUTUMN",
-        subtitle: "WARM COLORS ACCENTUATION",
-        phase: "PHASE_03 // QIU_FEN"
+        src: "/images/bear-cyber-3.png",
+        title: "03 :: 赛博朋克风 // CYBERPUNK MECHA",
+        subtitle: "FUTURE TECH FLAVORED SUIT",
+        phase: "PHASE_03 // CYBER_BEAR"
       },
       {
-        src: "/images/dong-zhi.png",
-        title: "04 :: 冬至瑞雪 // WINTER",
-        subtitle: "COLD TINT SPECTRUM MODELING",
-        phase: "PHASE_04 // DONG_ZHI"
-      },
-      {
-        src: "/images/yuan-xiao.webp",
-        title: "05 :: 元宵佳节 // LANTERN",
-        subtitle: "TRADITIONAL FESTIVAL ATMOSPHERE",
-        phase: "PHASE_05 // YUAN_XIAO"
-      },
-      {
-        src: "/images/duan-wu.png",
-        title: "06 :: 粽情端午 // DRAGON BOAT",
-        subtitle: "GREEN LEAF TEXTURE RIPPLES",
-        phase: "PHASE_06 // DUAN_WU"
-      },
-      {
-        src: "/images/qing-ming.png",
-        title: "07 :: 清明微雨 // QINGMING",
-        subtitle: "PASTEL HIGHLIGHT EMOTION",
-        phase: "PHASE_07 // QING_MING"
-      },
-      {
-        src: "/images/zhong-qiu.webp",
-        title: "08 :: 佳期中秋 // MID-AUTUMN",
-        subtitle: "GOLDEN HARVEST FULL MOON",
-        phase: "PHASE_08 // ZHONG_QI_U"
+        src: "/src/assets/images/regenerated_image_1780327634662.jpg",
+        title: "04 :: 街头潮流风 // STREETWEAR",
+        subtitle: "URBAN CASUAL INSPIRED MODEL",
+        phase: "PHASE_04 // URBAN_BEAR"
       }
     ] : (project.secondaryImages && project.secondaryImages.length > 1) ? project.secondaryImages.slice(1, 9).map((src, i) => ({
       src,
@@ -1214,16 +1190,16 @@ function DynamicLayout({
 
     const defaultWideCards = (project.id === "11" || project.title.includes("转转熊")) ? [
       {
-        src: "/images/qing-mingkv-1.jpg",
-        title: "09 :: 清明春山运营 KV // HERO KV",
-        subtitle: "EASTERN ESTHETICS COMPOSITING",
-        phase: "SCENE_01 // CHUN_SHAN"
+        src: "/src/assets/images/regenerated_image_1780328682494.png",
+        title: "05 :: 转转熊视觉海报设计 // POSTER",
+        subtitle: "3D GRAPHIC & CAMPAIGN ESTHETICS",
+        phase: "SCENE_01 // HERO_POSTER"
       },
       {
-        src: "/images/huan-du-zhong-qiu-KV-1.jpg",
-        title: "10 :: 欢度中秋主题海报 // FESTIVE KV",
-        subtitle: "HIGH-CONTRAST DIGITAL COLORING",
-        phase: "SCENE_02 // ZHONG_QI_U"
+        src: "/src/assets/images/regenerated_image_1780327603434.jpg",
+        title: "06 :: 转转熊潮玩 IP 主体 // IP CORE",
+        subtitle: "CORE CHARACTER MODEL & MESH",
+        phase: "SCENE_02 // IP_STANDARD"
       }
     ] : (project.secondaryImages && project.secondaryImages.length > 9) ? project.secondaryImages.slice(9).map((src, i) => ({
       src,
